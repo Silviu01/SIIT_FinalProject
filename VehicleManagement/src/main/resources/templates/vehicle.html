@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vehicle Dealership - Overview</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<table id="vehicles">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Model</th>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Color</th>
+        <th>Cost</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.id}">1</td>
+        <td th:text="${car.vmodel}">1</td>
+        <td th:text="${car.vname}">1</td>
+        <td th:text="${car.vyear}">1</td>
+        <td th:text="${car.vcolor}">1</td>
+        <td th:text="${car.vcost}">1</td>
+        <td th:text="${car.vstatus}">1</td>
+
+        <td>
+            <a th:href="@{/cars/} + ${car?.id} + '/'">Update</a>
+        </td>
+
+        <td>
+            <form th:action="@{/vehicle/delete/} + ${car?.id} + '/'" th:object="${vehicle}" method="post">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
