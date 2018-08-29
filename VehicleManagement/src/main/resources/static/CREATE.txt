@@ -1,0 +1,10 @@
+CREATE TABLE vehicles
+  (
+  id serial PRIMARY KEY,
+  vmodel varchar(20),
+  vname varchar(20),
+  vyear varchar(20),
+  vcolor varchar(20),
+  vcost varchar(20),
+  vstatus varchar(20)
+  );

@@ -14,5 +14,5 @@ public interface VehicleDao {
 
     void updateVehicle (Vehicle vehicle, int id);
 
-    void  getById (int id);
+    Vehicle getById (int id);
 }

@@ -1,7 +1,9 @@
-package siit.finalProject.VehicleManagement.domain;
 
-public class Vehicle {
-    private int id;
+package siit.finalProject.VehicleManagement.dto;
+
+import siit.finalProject.VehicleManagement.domain.VehicleStatus;
+
+public class CreateVehicleRequest {
     private String vmodel;
     private String vname;
     private String vyear;
@@ -9,26 +11,7 @@ public class Vehicle {
     private String vcost;
     private VehicleStatus vstatus;
 
-    public Vehicle(){}
 
-    public Vehicle(int id, String vmodel, String vname, String vyear, String vcolor, String vcost, VehicleStatus vstatus) {
-        this.id = id;
-        this.vmodel = vmodel;
-        this.vname = vname;
-        this.vyear = vyear;
-        this.vcolor = vcolor;
-        this.vcost = vcost;
-        this.vstatus = vstatus;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
     public String getVmodel() {
         return vmodel;
     }
@@ -76,18 +59,4 @@ public class Vehicle {
     public void setVstatus(VehicleStatus vstatus) {
         this.vstatus = vstatus;
     }
-
-//    public String toString(){
-//        return "Vehicles{" +
-//                "id='" + id + '\'' +
-//                ", vmodel='" + vmodel + '\'' +
-//                ", vname='" + vname + '\'' +
-//                ", vyear=" + vyear +
-//                ", vcolor='" + vcolor + '\'' +
-//                ", vcost=" + vcost + '\'' +
-//                ", vstatus=" + vstatus +
-//                '}';
-
 }
-
-

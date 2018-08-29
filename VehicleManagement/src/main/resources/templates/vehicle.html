@@ -1,10 +1,46 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
 <head>
     <title>Vehicle Dealership - Overview</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
+<p th:text="'Add new car:'" />
+
+<form action="#" th:action="@{/vehicle}" th:object="${createVehicleRequest}" method="post">
+    <div>
+        <label th:for="${vmodel}">Model: </label>
+        <input type="text" id="vmodel" name="vmodel"/>
+    </div>
+
+    <div>
+        <label th:for="${vname}">Name: </label>
+        <input type="text" id="vname" name="vname"/>
+    </div>
+
+    <div>
+        <label th:for="${vyear}">Year: </label>
+        <input type="text" id="vyear" name="vyear"/>
+    </div>
+
+    <div>
+        <label th:for="${vcolor}">Color: </label>
+        <input type="text" id="vcolor" name="vcolor"/>
+    </div>
+
+    <div>
+        <label th:for="${vcost}">Price: </label>
+        <input type="text" id="vcost" name="vcost"/>
+    </div>
+
+    <div>
+        <input type="submit" id="doUpdate" name="save vehicle" value="Add car"/>
+    </div>
+</form>
+
+<br><br>
 
 <table id="vehicles">
     <thead>
@@ -30,7 +66,7 @@
         <td th:text="${car.vstatus}">1</td>
 
         <td>
-            <a th:href="@{/cars/} + ${car?.id} + '/'">Update</a>
+            <a th:href="@{/vehicle/} + ${car?.id} + '/'">Update</a>
         </td>
 
         <td>

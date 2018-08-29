@@ -9,10 +9,12 @@ import siit.finalProject.VehicleManagement.domain.VehicleStatus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class VehicleDaoImpl implements VehicleDao {
+    List<Vehicle> vehicleList = new ArrayList<>();
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -20,34 +22,51 @@ public class VehicleDaoImpl implements VehicleDao {
     @Override
     public List<Vehicle> getAllVehicles() {
         return jdbcTemplate.query("SELECT * FROM vehicles", (resultSet, i) -> {
-            Vehicle vehicle = new Vehicle();
-            vehicle.setId(resultSet.getInt("id"));
-            vehicle.setVmodel(resultSet.getString("vmodel"));
-            vehicle.setVname(resultSet.getString("vname"));
-            vehicle.setVyear(resultSet.getString("vyear"));
-            vehicle.setVcolor(resultSet.getString("vcolor"));
-            vehicle.setVcost(resultSet.getString("vcost"));
-            vehicle.setVstatus(VehicleStatus.valueOf(resultSet.getString("vstatus")));
-
+            Vehicle vehicle = getVehicleFromDB(resultSet);
             return vehicle;
         });
     }
 
     @Override
     public void createVehicle(Vehicle vehicle) {
+        List<Vehicle> vehicles = getAllVehicles();
+
+        if (!vehicles.contains(vehicle)) {
+            jdbcTemplate.update("INSERT INTO vehicles (vmodel, vname, vyear, vcolor, vcost, vstatus) " +
+                            "VALUES (?, ?, ?, ?, ?, ?)", vehicle.getVmodel(), vehicle.getVname(),
+                    vehicle.getVyear(), vehicle.getVcolor(), vehicle.getVcost(), "Available");
+        }
+    }
+
+    @Override
+    public void updateVehicle(Vehicle vehicle, int id) {
+        jdbcTemplate.update("UPDATE vehicles SET vmodel = ?, vname = ?, vyear = ?, vcolor = ?, vcost = ?, vstatus = ? WHERE vehicles.id= ?",
+                vehicle.getVmodel(), vehicle.getVname(), vehicle.getVyear(), vehicle.getVcolor(), vehicle.getVcost(), "Available", id);
     }
 
     @Override
     public void removeVehicle(int id) {
-     }
-
-    @Override
-    public void updateVehicle(Vehicle vehicle, int id) {
-
     }
 
     @Override
-    public void getById(int id) {
+    public Vehicle getById(int id) {
+        List<Vehicle> vehicles = jdbcTemplate.query("SELECT * FROM vehicles WHERE vehicles.id= ?",
+                (resultSet, i) -> {
+                    Vehicle vehicle = getVehicleFromDB(resultSet);
+                    return vehicle;
+                }, id);
+        return vehicles.get(0);
+    }
 
+    private Vehicle getVehicleFromDB(ResultSet resultSet) throws SQLException {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setId(resultSet.getInt("id"));
+        vehicle.setVmodel(resultSet.getString("vmodel"));
+        vehicle.setVname(resultSet.getString("vname"));
+        vehicle.setVyear(resultSet.getString("vyear"));
+        vehicle.setVcolor(resultSet.getString("vcolor"));
+        vehicle.setVcost(resultSet.getString("vcost"));
+        vehicle.setVstatus(VehicleStatus.valueOf(resultSet.getString("vstatus")));
+        return vehicle;
     }
 }
