@@ -1,6 +1,5 @@
 package siit.finalProject.VehicleManagement.service;
 
-import ch.qos.logback.core.net.server.Client;
 import siit.finalProject.VehicleManagement.domain.Vehicle;
 import siit.finalProject.VehicleManagement.dto.CreateVehicleRequest;
 
@@ -12,11 +11,11 @@ public interface VehicleService {
 
     void createVehicle (Vehicle vehicle);
 
-    void removeVehicle (int id);
+    void removeVehicle (long id);
 
-    void updateVehicle (Vehicle vehicle, int id);
+    void updateVehicle (Vehicle vehicle, long id);
 
-    Vehicle getById(int id);
+    Vehicle getById(long id);
 
     Vehicle getVehicle(CreateVehicleRequest vehicleRequest);
 

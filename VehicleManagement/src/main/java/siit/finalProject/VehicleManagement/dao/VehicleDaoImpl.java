@@ -37,13 +37,13 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
-    public void updateVehicle(Vehicle vehicle, int id) {
+    public void updateVehicle(Vehicle vehicle, long id) {
         jdbcTemplate.update("UPDATE vehicles SET vmodel = ?, vname = ?, vyear = ?, vcolor = ?, vcost = ?, vstatus = ? WHERE vehicles.id= ?",
                 vehicle.getVmodel(), vehicle.getVname(), vehicle.getVyear(), vehicle.getVcolor(), vehicle.getVcost(), "Available", id);
     }
 
     @Override
-    public Vehicle getById(int id) {
+    public Vehicle getById(long id) {
         List<Vehicle> vehicles = jdbcTemplate.query("SELECT * FROM vehicles WHERE vehicles.id= ?",
                 (resultSet, i) -> {
                     Vehicle vehicle = getVehicleFromDB(resultSet);
@@ -53,14 +53,14 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
-    public void removeVehicle(int id) {
+    public void removeVehicle(long id) {
     }
 
 
 
     private Vehicle getVehicleFromDB(ResultSet resultSet) throws SQLException {
         Vehicle vehicle = new Vehicle();
-        vehicle.setId(resultSet.getInt("id"));
+        vehicle.setId(resultSet.getLong("id"));
         vehicle.setVmodel(resultSet.getString("vmodel"));
         vehicle.setVname(resultSet.getString("vname"));
         vehicle.setVyear(resultSet.getString("vyear"));

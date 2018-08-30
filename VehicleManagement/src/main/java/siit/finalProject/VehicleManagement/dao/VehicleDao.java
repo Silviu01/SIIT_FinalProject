@@ -10,9 +10,9 @@ public interface VehicleDao {
 
     void createVehicle (Vehicle vehicle);
 
-    void removeVehicle (int id);
+    void removeVehicle (long id);
 
-    void updateVehicle (Vehicle vehicle, int id);
+    void updateVehicle (Vehicle vehicle, long id);
 
-    Vehicle getById (int id);
+    Vehicle getById (long id);
 }

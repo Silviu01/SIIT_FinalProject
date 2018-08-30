@@ -28,8 +28,22 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public void removeVehicle(int id) {
-        int indexToRemove = -1;
+    public void updateVehicle(Vehicle vehicle, long id) {
+        vehicles = vehicles.stream().filter(vehicle1 -> vehicle1.getId() != id).collect(Collectors.toList());
+        vehicle.setId(id);
+        vehicles.add(vehicle);
+        vehicleDao.updateVehicle(vehicle, id);
+    }
+
+    @Override
+    public Vehicle getById(long id) {
+        return vehicleDao.getById(id);
+    }
+
+
+    @Override
+    public void removeVehicle(long id) {
+        long indexToRemove = -1;
 
         for (int i = 0; i < vehicles.size(); i++)
             if (vehicles.get(i).getId() == id) {
@@ -40,18 +54,6 @@ public class VehicleServiceImpl implements VehicleService {
         }
     }
 
-    @Override
-    public void updateVehicle(Vehicle vehicle, int id) {
-        vehicles = vehicles.stream().filter(vehicle1 -> vehicle1.getId() != id).collect(Collectors.toList());
-        vehicle.setId(id);
-        vehicles.add(vehicle);
-        vehicleDao.updateVehicle(vehicle, id);
-    }
-
-    @Override
-    public Vehicle getById(int id) {
-        return vehicleDao.getById(id);
-    }
 
     @Override
     public Vehicle getVehicle(CreateVehicleRequest vehicleRequest) {

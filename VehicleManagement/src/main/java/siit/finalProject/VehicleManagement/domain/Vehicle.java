@@ -1,7 +1,7 @@
 package siit.finalProject.VehicleManagement.domain;
 
 public class Vehicle {
-    private int id;
+    private long id;
     private String vmodel;
     private String vname;
     private String vyear;
@@ -11,7 +11,7 @@ public class Vehicle {
 
     public Vehicle(){}
 
-    public Vehicle(int id, String vmodel, String vname, String vyear, String vcolor, String vcost, VehicleStatus vstatus) {
+    public Vehicle(long id, String vmodel, String vname, String vyear, String vcolor, String vcost, VehicleStatus vstatus) {
         this.id = id;
         this.vmodel = vmodel;
         this.vname = vname;
@@ -22,13 +22,14 @@ public class Vehicle {
     }
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
+
     public String getVmodel() {
         return vmodel;
     }

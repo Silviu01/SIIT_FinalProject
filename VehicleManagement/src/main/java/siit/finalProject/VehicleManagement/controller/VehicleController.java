@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import siit.finalProject.VehicleManagement.domain.Vehicle;
 import siit.finalProject.VehicleManagement.dto.CreateVehicleRequest;
 import siit.finalProject.VehicleManagement.service.VehicleService;
-import siit.finalProject.VehicleManagement.service.VehicleServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -37,7 +36,7 @@ public class VehicleController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/vehicle/{id}")
-    public String getVehicle(@PathVariable int id, Model model) {
+    public String getVehicle(@PathVariable long id, Model model) {
         Vehicle vehicle = vehicleService.getById(id);
         model.addAttribute("updateVehicleRequest", vehicleService.getVehicleRequest(vehicle));
         model.addAttribute("vehicleId", id);
@@ -45,7 +44,7 @@ public class VehicleController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/vehicle/update/{id}")
-    public String updateVehicle(CreateVehicleRequest vehicleRequest, @PathVariable int id) {
+    public String updateVehicle(CreateVehicleRequest vehicleRequest, @PathVariable long id) {
         Vehicle vehicle = vehicleService.getVehicle(vehicleRequest);
         vehicleService.updateVehicle(vehicle, id);
         return "redirect:/vehicle";
