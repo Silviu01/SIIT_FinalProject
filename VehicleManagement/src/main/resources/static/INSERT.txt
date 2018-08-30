@@ -1,3 +1,3 @@
-insert into vehicles values ('1','Volkswagen', 'Jetta', '2006', 'blue', '3200', 'Available'),
-('2','BMW', '320', '2009', 'red', '6522', 'Available'),
-('3','Dacia', '1310', '1999', 'yellow', '1100', 'Available');
+insert into vehicles values ('1528','Volkswagen', 'Jetta', '2006', 'blue', '3200', 'Available'),
+('4466','BMW', '320', '2009', 'red', '6522', 'Available'),
+('2844','Dacia', '1310', '1999', 'yellow', '1100', 'Available');

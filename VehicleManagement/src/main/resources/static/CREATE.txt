@@ -1,6 +1,6 @@
 CREATE TABLE vehicles
   (
-  id serial PRIMARY KEY,
+  id BIGINT PRIMARY KEY,
   vmodel varchar(20),
   vname varchar(20),
   vyear varchar(20),

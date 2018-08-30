@@ -2,7 +2,6 @@ package siit.finalProject.VehicleManagement.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import siit.finalProject.VehicleManagement.domain.Vehicle;
 import siit.finalProject.VehicleManagement.domain.VehicleStatus;
@@ -30,10 +29,9 @@ public class VehicleDaoImpl implements VehicleDao {
     @Override
     public void createVehicle(Vehicle vehicle) {
         List<Vehicle> vehicles = getAllVehicles();
-
         if (!vehicles.contains(vehicle)) {
-            jdbcTemplate.update("INSERT INTO vehicles (vmodel, vname, vyear, vcolor, vcost, vstatus) " +
-                            "VALUES (?, ?, ?, ?, ?, ?)", vehicle.getVmodel(), vehicle.getVname(),
+            jdbcTemplate.update("INSERT INTO vehicles (id, vmodel, vname, vyear, vcolor, vcost, vstatus) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?)", System.currentTimeMillis(), vehicle.getVmodel(), vehicle.getVname(),
                     vehicle.getVyear(), vehicle.getVcolor(), vehicle.getVcost(), "Available");
         }
     }
@@ -45,10 +43,6 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
-    public void removeVehicle(int id) {
-    }
-
-    @Override
     public Vehicle getById(int id) {
         List<Vehicle> vehicles = jdbcTemplate.query("SELECT * FROM vehicles WHERE vehicles.id= ?",
                 (resultSet, i) -> {
@@ -57,6 +51,12 @@ public class VehicleDaoImpl implements VehicleDao {
                 }, id);
         return vehicles.get(0);
     }
+
+    @Override
+    public void removeVehicle(int id) {
+    }
+
+
 
     private Vehicle getVehicleFromDB(ResultSet resultSet) throws SQLException {
         Vehicle vehicle = new Vehicle();
