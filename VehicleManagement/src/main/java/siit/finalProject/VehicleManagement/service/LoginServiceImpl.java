@@ -1,23 +1,42 @@
 package siit.finalProject.VehicleManagement.service;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import siit.finalProject.VehicleManagement.dao.UserDAO;
 import siit.finalProject.VehicleManagement.domain.User;
+import siit.finalProject.VehicleManagement.exceptionsHandler.InvalidCredentials;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Service
 public class LoginServiceImpl implements LoginService {
 
-    List<User> users = new ArrayList<>();
+    @Autowired
+    private UserDAO userDAO;
 
     @Override
-    public List<User> getAllUsers() {
-        return users;
+    public User login(String username, String pass) throws InvalidCredentials {
+
+        encodePass(pass);
+        User user = userDAO.getUserByCredentials(username, encodePass(pass));
+
+        if(user == null){
+            throw new InvalidCredentials();
+        }
+        return user;
     }
 
-    @Override
-    public void createUser(User user) {
-        users.add(user);
+    private String encodePass(String pass) throws RuntimeException {
+
+        try {
+            return DigestUtils.md5Hex(pass);
+        } catch (Exception ex) {
+            throw new RuntimeException("Encoding problem");
+        }
     }
 
-
+    public static void main(String[] args) {
+        LoginServiceImpl loginService = new LoginServiceImpl();
+        String encoded = loginService.encodePass("barosanu");
+        System.out.println(encoded);
+    }
 }

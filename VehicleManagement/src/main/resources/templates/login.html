@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vehicle Dealership</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+
+<div th:if="${error != null}">
+    <p th:text="${error}" style="color:red"></p>
+</div>
+
+<form action="#" th:action="@{/login}" method="post">
+
+    <div>
+        <label >Username</label>
+        <input type="text" id="username" name="username"  />
+    </div>
+
+    <div>
+        <label>Pass</label>
+        <input type="password" id="password" name="password" />
+    </div>
+
+
+    <div>
+        <input type="submit" id="login" name="login" value="Login"/>
+    </div>
+</form>
+
+</body>
+</html>

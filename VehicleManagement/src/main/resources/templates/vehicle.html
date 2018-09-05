@@ -7,6 +7,17 @@
 </head>
 <body>
 
+<span th:if="${user != null}" th:text="${user.username}">
+</span>
+<a th:if="${user != null}" href="/logout">Logout</a>
+<table th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+        <td th:text="${error}" style="color:red"></td>
+    </tr>
+</table>
+
+<span th:text="${message}"></span>
+
 <p th:text="'Add new car:'" />
 
 <form action="#" th:action="@{/vehicle}" th:object="${createVehicleRequest}" method="post">
@@ -66,7 +77,7 @@
         <td th:text="${car.vstatus}">1</td>
 
         <td>
-            <a th:href="@{/vehicle/} + ${car?.id} + '/'">Update</a>
+            <a th:href="@{/vehicle/} + ${car?.id} " th:if="${#sets.contains(user.rolesAsString, 'admin')}">Update</a>
         </td>
 
         <td>

@@ -30,8 +30,8 @@ public class VehicleDaoImpl implements VehicleDao {
     public void createVehicle(Vehicle vehicle) {
         List<Vehicle> vehicles = getAllVehicles();
         if (!vehicles.contains(vehicle)) {
-            jdbcTemplate.update("INSERT INTO vehicles (id, vmodel, vname, vyear, vcolor, vcost, vstatus) " +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?)", System.currentTimeMillis(), vehicle.getVmodel(), vehicle.getVname(),
+            jdbcTemplate.update("INSERT INTO vehicles (vmodel, vname, vyear, vcolor, vcost, vstatus) " +
+                            "VALUES (?, ?, ?, ?, ?, ?)", vehicle.getVmodel(), vehicle.getVname(),
                     vehicle.getVyear(), vehicle.getVcolor(), vehicle.getVcost(), "Available");
         }
     }
@@ -54,7 +54,7 @@ public class VehicleDaoImpl implements VehicleDao {
 
     @Override
     public void removeVehicle(long id) {
-        jdbcTemplate.update("DELETE FROM vehicles WHERE id=#{id}");
+        jdbcTemplate.update("DELETE FROM vehicles WHERE id=?", id);
     }
 
 
@@ -64,9 +64,9 @@ public class VehicleDaoImpl implements VehicleDao {
         vehicle.setId(resultSet.getLong("id"));
         vehicle.setVmodel(resultSet.getString("vmodel"));
         vehicle.setVname(resultSet.getString("vname"));
-        vehicle.setVyear(resultSet.getString("vyear"));
+        vehicle.setVyear(resultSet.getInt("vyear"));
         vehicle.setVcolor(resultSet.getString("vcolor"));
-        vehicle.setVcost(resultSet.getString("vcost"));
+        vehicle.setVcost(resultSet.getInt("vcost"));
         vehicle.setVstatus(VehicleStatus.valueOf(resultSet.getString("vstatus")));
         return vehicle;
     }

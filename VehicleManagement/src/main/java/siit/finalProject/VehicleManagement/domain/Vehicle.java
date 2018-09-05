@@ -4,14 +4,14 @@ public class Vehicle {
     private long id;
     private String vmodel;
     private String vname;
-    private String vyear;
+    private int vyear;
     private String vcolor;
-    private String vcost;
+    private int vcost;
     private VehicleStatus vstatus;
 
     public Vehicle(){}
 
-    public Vehicle(long id, String vmodel, String vname, String vyear, String vcolor, String vcost, VehicleStatus vstatus) {
+    public Vehicle(long id, String vmodel, String vname, int vyear, String vcolor, int vcost, VehicleStatus vstatus) {
         this.id = id;
         this.vmodel = vmodel;
         this.vname = vname;
@@ -46,11 +46,11 @@ public class Vehicle {
         this.vname = vname;
     }
 
-    public String getVyear() {
+    public int getVyear() {
         return vyear;
     }
 
-    public void setVyear(String vyear) {
+    public void setVyear(int vyear) {
         this.vyear = vyear;
     }
 
@@ -62,11 +62,11 @@ public class Vehicle {
         this.vcolor = vcolor;
     }
 
-    public String getVcost() {
+    public int getVcost() {
         return vcost;
     }
 
-    public void setVcost(String vcost) {
+    public void setVcost(int vcost) {
         this.vcost = vcost;
     }
 

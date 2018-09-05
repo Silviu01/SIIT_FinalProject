@@ -1,12 +1,9 @@
 package siit.finalProject.VehicleManagement.service;
 
 import siit.finalProject.VehicleManagement.domain.User;
-
-import java.util.List;
+import siit.finalProject.VehicleManagement.exceptionsHandler.InvalidCredentials;
 
 public interface LoginService {
 
-    List<User> getAllUsers();
-
-    void createUser(User user);
+    User login(String user, String pass)throws InvalidCredentials;
 }

@@ -6,9 +6,9 @@ import siit.finalProject.VehicleManagement.domain.VehicleStatus;
 public class CreateVehicleRequest {
     private String vmodel;
     private String vname;
-    private String vyear;
+    private int vyear;
     private String vcolor;
-    private String vcost;
+    private int vcost;
     private VehicleStatus vstatus;
 
 
@@ -28,11 +28,11 @@ public class CreateVehicleRequest {
         this.vname = vname;
     }
 
-    public String getVyear() {
+    public int getVyear() {
         return vyear;
     }
 
-    public void setVyear(String vyear) {
+    public void setVyear(int vyear) {
         this.vyear = vyear;
     }
 
@@ -44,11 +44,11 @@ public class CreateVehicleRequest {
         this.vcolor = vcolor;
     }
 
-    public String getVcost() {
+    public int getVcost() {
         return vcost;
     }
 
-    public void setVcost(String vcost) {
+    public void setVcost(int vcost) {
         this.vcost = vcost;
     }
 
