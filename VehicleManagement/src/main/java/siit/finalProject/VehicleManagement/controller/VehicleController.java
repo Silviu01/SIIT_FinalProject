@@ -50,6 +50,14 @@ public class VehicleController {
         return "redirect:/vehicle";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "vehicle/removeVehicle/{id}")
+    public String removeVehicle(Model model, @PathVariable(name = "id") int id){
+        vehicleService.removeVehicle(id);
+        model.addAttribute("message", "Car deleted.");
+        model.addAttribute("cars", vehicleService.getAllVehicles());
+        return "redirect:/vehicle";
+    }
+
 
 //    @RequestMapping(method = RequestMethod.POST, value = "/vehicle/delete/{id}")
 //    public String removeVehicle(@PathVariable int id, Model model) {

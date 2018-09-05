@@ -43,15 +43,17 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void removeVehicle(long id) {
-        long indexToRemove = -1;
+//        long indexToRemove = -1;
+//
+//        for (int i = 0; i < vehicles.size(); i++)
+//            if (vehicles.get(i).getId() == id) {
+//                indexToRemove = 0;
+//            }
+//        if (indexToRemove >= 0) {
+//            vehicles.remove(indexToRemove);
+//        }
+        vehicleDao.removeVehicle(id);
 
-        for (int i = 0; i < vehicles.size(); i++)
-            if (vehicles.get(i).getId() == id) {
-                indexToRemove = 0;
-            }
-        if (indexToRemove >= 0) {
-            vehicles.remove(indexToRemove);
-        }
     }
 
 

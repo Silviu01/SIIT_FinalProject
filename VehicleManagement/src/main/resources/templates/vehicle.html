@@ -14,27 +14,22 @@
         <label th:for="${vmodel}">Model: </label>
         <input type="text" id="vmodel" name="vmodel"/>
     </div>
-
     <div>
         <label th:for="${vname}">Name: </label>
         <input type="text" id="vname" name="vname"/>
     </div>
-
     <div>
         <label th:for="${vyear}">Year: </label>
         <input type="text" id="vyear" name="vyear"/>
     </div>
-
     <div>
         <label th:for="${vcolor}">Color: </label>
         <input type="text" id="vcolor" name="vcolor"/>
     </div>
-
     <div>
         <label th:for="${vcost}">Price: </label>
         <input type="text" id="vcost" name="vcost"/>
     </div>
-
     <div>
         <input type="submit" id="doUpdate" name="save vehicle" value="Add car"/>
     </div>
@@ -54,8 +49,13 @@
         <th>Status</th>
     </tr>
     </thead>
-
     <tbody>
+
+    <div>
+        <img th:src="@{/resources/static/images/car-967470_960_720.png}" />
+        <img th:src="@{/resources/static/images/car1.png}" />
+    </div>
+
     <tr th:each="car : ${cars}">
         <td th:text="${car.id}">1</td>
         <td th:text="${car.vmodel}">1</td>
@@ -70,7 +70,7 @@
         </td>
 
         <td>
-            <form th:action="@{/vehicle/delete/} + ${car?.id} + '/'" th:object="${vehicle}" method="post">
+            <form th:action="@{/vehicle/removeVehicle/} + ${car?.id} + '/'" th:object="${vehicle}" method="delete">
                 <input type="submit" value="Delete"/>
             </form>
         </td>
