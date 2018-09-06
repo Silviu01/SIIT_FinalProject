@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+<head>
+    <title>Vehicle Dealership - Overview</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<span th:if="${user != null}" th:text="${user.username}">
+</span>
+<a th:if="${user != null}" href="/logout">Logout</a>
+<table th:if="${errors != null}">
+    <tr th:each="error : ${errors}">
+        <td th:text="${error}" style="color:red"></td>
+    </tr>
+</table>
+
+<span th:text="${message}"></span>
+
+<p th:text="'Add new car:'" />
+
+<form action="#" th:action="@{/vehicle}" th:object="${createVehicleRequest}" method="post">
+    <div>
+        <label th:for="${vmodel}">Model: </label>
+        <input type="text" id="vmodel" name="vmodel"/>
+    </div>
+    <div>
+        <label th:for="${vname}">Name: </label>
+        <input type="text" id="vname" name="vname"/>
+    </div>
+    <div>
+        <label th:for="${vyear}">Year: </label>
+        <input type="text" id="vyear" name="vyear"/>
+    </div>
+    <div>
+        <label th:for="${vcolor}">Color: </label>
+        <input type="text" id="vcolor" name="vcolor"/>
+    </div>
+    <div>
+        <label th:for="${vcost}">Price: </label>
+        <input type="text" id="vcost" name="vcost"/>
+    </div>
+    <div>
+        <input type="submit" id="doUpdate" name="save vehicle" value="Add car"/>
+    </div>
+</form>
+
+<br><br>
+
+<table id="vehicles">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Model</th>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Color</th>
+        <th>Cost</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <div>
+        <img th:src="@{/resources/static/images/car-967470_960_720.png}" />
+        <img th:src="@{/resources/static/images/car1.png}" />
+    </div>
+
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.id}">1</td>
+        <td th:text="${car.vmodel}">1</td>
+        <td th:text="${car.vname}">1</td>
+        <td th:text="${car.vyear}">1</td>
+        <td th:text="${car.vcolor}">1</td>
+        <td th:text="${car.vcost}">1</td>
+        <td th:text="${car.vstatus}">1</td>
+
+        <td>
+            <a th:href="@{/vehicle/} + ${car?.id} " th:if="${#sets.contains(user.rolesAsString, 'admin')}">Update</a>
+        </td>
+
+        <td>
+            <form th:action="@{/vehicle/removeVehicle/} + ${car?.id} + '/'" th:object="${vehicle}" method="delete">
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

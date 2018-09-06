@@ -1,0 +1,33 @@
+CREATE TABLE vehicles
+  (
+  id BIGINT PRIMARY KEY,
+  vmodel varchar(20),
+  vname varchar(20),
+  vyear varchar(20),
+  vcolor varchar(20),
+  vcost varchar(20),
+  vstatus varchar(20)
+  );
+
+
+Create table vehicles
+(
+id SERIAL PRIMARY KEY,
+vname VARCHAR(20) NOT NULL,
+vmodel VARCHAR(20) NOT NULL,
+vyear integer,
+vcolor VARCHAR(20),
+vcost integer NOT NULL,
+vstatus VARCHAR(20)
+);
+
+
+create table Users (
+id SERIAL PRIMARY KEY,
+email VARCHAR(50) NOT NULL unique,
+username VARCHAR(50) NOT NULL unique,
+password VARCHAR(100) NOT NULL,
+mobile VARCHAR(20) NOT NULL,
+address VARCHAR(150) NOT NULL,
+role VARCHAR(10) NOT NULL
+)
