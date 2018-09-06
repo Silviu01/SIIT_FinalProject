@@ -6,6 +6,7 @@ import siit.finalProject.VehicleManagement.domain.User;
 @Service
 public class SecurityService {
 
+
     private ThreadLocal<User> currentUser;
 
     public void setCurrentUser(User user) {
@@ -14,8 +15,8 @@ public class SecurityService {
     }
 
     public User getCurrentUser() {
-        return this.currentUser != null ?
-                this.currentUser.get() : null;
+        if (this.currentUser != null) return this.currentUser.get();
+        else return null;
 
     }
 }

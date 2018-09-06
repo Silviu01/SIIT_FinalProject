@@ -19,6 +19,8 @@ public class LoginServiceImpl implements LoginService {
         encodePass(pass);
         User user = userDAO.getUserByCredentials(username, encodePass(pass));
 
+
+
         if(user == null){
             throw new InvalidCredentials();
         }
@@ -34,9 +36,10 @@ public class LoginServiceImpl implements LoginService {
         }
     }
 
+    // TODO !!! delete this !!!
     public static void main(String[] args) {
         LoginServiceImpl loginService = new LoginServiceImpl();
-        String encoded = loginService.encodePass("barosanu");
+        String encoded = loginService.encodePass("222");
         System.out.println(encoded);
     }
 }

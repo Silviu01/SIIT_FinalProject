@@ -23,23 +23,23 @@ public class UserDAOImpl implements UserDAO {
     public User getUserByCredentials(String username, String pass) {
 
         try {
-            return jdbcTemplate.queryForObject("select * from users where username=? and password=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM users WHERE username = ? AND password = ?",
                     new RowMapper<User>() {
                         @Override
                         public User mapRow(ResultSet resultSet, int i) throws SQLException {
                             User user = new User();
                             user.setUsername(resultSet.getString("username"));
-                            String rolesAsStrig = resultSet.getString("roles");
-                            if (rolesAsStrig != null) {
-                                String[] roles = rolesAsStrig.split(",");
+                            String rolesAsString = resultSet.getString("roles");
+
+                            if (rolesAsString != null) {
+                                String[] roles = rolesAsString.split(",");
                                 Set<UserRole> userRoles = new LinkedHashSet<>();
-                                for (String role :
-                                        roles) {
+
+                                for (String role : roles) {
                                     userRoles.add(UserRole.valueOf(role));
                                 }
                                 user.setUserRoles(userRoles);
                             }
-                            //user.setRoles();
                             return user;
                         }
                     }, username, pass);

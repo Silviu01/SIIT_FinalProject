@@ -19,28 +19,28 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        User user = (User) ((HttpServletRequest) servletRequest).getSession().getAttribute("currentUser");
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        User user = (User) ((HttpServletRequest) request).getSession().getAttribute("currentUser");
 
         securityService.setCurrentUser(user);
 
-        String url = ((HttpServletRequest) servletRequest).getRequestURL().toString();
+        String url = ((HttpServletRequest) request).getRequestURL().toString();
 
         if (url.contains("vehicle")) {
             if (user == null) {
-                HttpServletResponse response = (HttpServletResponse) servletResponse;
-                response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-                response.setHeader("Location", "/login");
+                HttpServletResponse servletResponse = (HttpServletResponse) response;
+                servletResponse.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+                servletResponse.setHeader("Location", "/login");
                 return;
-            } else {
-                filterChain.doFilter(servletRequest, servletResponse);
             }
         }
+        chain.doFilter(request, response);
     }
+
+
 
     @Override
     public void destroy() {

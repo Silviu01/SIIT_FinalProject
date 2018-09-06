@@ -8,9 +8,6 @@ public class User {
     public String username;
     public Set<UserRole> userRoles;
 
-    public User() {
-    }
-
     public String getUsername() {
         return username;
     }

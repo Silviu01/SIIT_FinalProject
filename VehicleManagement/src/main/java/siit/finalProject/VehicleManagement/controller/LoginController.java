@@ -18,20 +18,19 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String displayLogin(Model model) {
-        model.addAttribute("login", loginService);
+    public String displayLogin() {
         return "login";
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String userLogin (String username, String password,
-                             Model model, HttpServletRequest request){
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String doLogin(String username, String password,
+                          Model model, HttpServletRequest request) {
 
         try {
             User user = loginService.login(username, password);
             request.getSession().setAttribute("currentUser", user);
             return "redirect:/vehicle";
-        }catch (InvalidCredentials invalidCredentials){
+        } catch (InvalidCredentials invalidCredentials) {
             model.addAttribute("error", "Invalid Credentials");
         }
         return "login";
