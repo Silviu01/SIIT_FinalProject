@@ -5,8 +5,11 @@ import java.util.Set;
 
 public class User {
 
-    public String username;
-    public Set<UserRole> userRoles;
+    private String username;
+    private Set<UserRole> userRoles;
+
+    public User() {
+    }
 
     public String getUsername() {
         return username;
