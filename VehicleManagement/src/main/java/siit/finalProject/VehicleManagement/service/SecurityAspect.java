@@ -18,10 +18,16 @@ public class SecurityAspect {
     @Autowired
     private SecurityService securityService;
 
+    /**
+     * @param call
+     * @param hasRole
+     * @return
+     * @throws Throwable
+     */
     @Around(value = "execution (* siit.finalProject.VehicleManagement.controller.*.*(..)) && @annotation(hasRole) ", argNames = "call, hasRole")
     public Object audit(final ProceedingJoinPoint call, HasRole hasRole) throws Throwable {
-
         User user = securityService.getCurrentUser();
+
         if (user == null || !user.getRolesAsString().contains(hasRole.role())) {
             throw new AccessDeniedException();
         }

@@ -17,11 +17,21 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    /**
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String displayLogin() {
         return "login";
     }
 
+    /**
+     * @param username
+     * @param password
+     * @param model
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String doLogin(String username, String password,
                           Model model, HttpServletRequest request) {
@@ -31,11 +41,15 @@ public class LoginController {
             request.getSession().setAttribute("currentUser", user);
             return "redirect:/vehicle";
         } catch (InvalidCredentials invalidCredentials) {
-            model.addAttribute("error", "Invalid Credentials");
+            model.addAttribute("error1", "Invalid Credentials");
         }
         return "login";
     }
 
+    /**
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String doLogout(HttpServletRequest request) {
         request.getSession().invalidate();

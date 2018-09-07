@@ -9,6 +9,9 @@ public class SecurityService {
 
     private ThreadLocal<User> currentUser;
 
+    /**
+     * @param user
+     */
     public void setCurrentUser(User user) {
         this.currentUser = new ThreadLocal<>();
         this.currentUser.set(user);

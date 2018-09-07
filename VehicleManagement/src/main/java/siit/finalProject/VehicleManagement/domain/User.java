@@ -20,6 +20,9 @@ public class User {
         return userRoles;
     }
 
+    /**
+     * @return
+     */
     public Set<String> getRolesAsString() {
         Set<String> result = new LinkedHashSet<>();
 

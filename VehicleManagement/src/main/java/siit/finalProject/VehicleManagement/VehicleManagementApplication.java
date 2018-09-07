@@ -3,9 +3,16 @@ package siit.finalProject.VehicleManagement;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ *
+ *
+ */
 @SpringBootApplication
 public class VehicleManagementApplication {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(VehicleManagementApplication.class, args);
 	}
