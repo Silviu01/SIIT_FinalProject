@@ -40,7 +40,7 @@ public class SecurityFilter implements Filter {
             if (user == null) {
                 HttpServletResponse servletResponse = (HttpServletResponse) response;
                 servletResponse.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-                servletResponse.setHeader("Location", "/");
+                servletResponse.setHeader("Location", "/login");
                 return;
             }
         }

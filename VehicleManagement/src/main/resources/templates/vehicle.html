@@ -20,7 +20,8 @@
 
 
 
-<p th:text="'Add new car:'"  th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}"/>
+<p th:text="'Add new car:'"  th:if="${#sets.contains(user.rolesAsString, 'admin')
+ or #sets.contains(user.rolesAsString, 'dealer')}"/>
 
 <span th:text="${message1}"></span>
 
@@ -28,7 +29,8 @@
 <span th:text="${message1}" style="color:blue"></span>
 
 
-<form action="#" th:action="@{/vehicle}" th:object="${createVehicleRequest}" method="post" th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">
+<form action="#" th:action="@{/vehicle}" th:object="${createVehicleRequest}"
+      method="post" th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">
     <div>
         <label th:for="${vmodel}">Model: </label>
         <input type="text" id="vmodel" name="vmodel"/>
@@ -85,11 +87,13 @@
         <td th:text="${car.vstatus}" width="100" align="middle">1</td>
 
         <td width="60">
-            <a th:href="@{/vehicle/} + ${car?.id}" th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">Update</a>
+            <a th:href="@{/vehicle/} + ${car?.id}" th:if="${#sets.contains(user.rolesAsString, 'admin')
+            or #sets.contains(user.rolesAsString, 'dealer')}">Update</a>
         </td>
 
         <td>
-            <form th:action="@{/vehicle/removeVehicle/} + ${car?.id} + '/'"  th:object="${vehicle}" method="delete" th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">
+            <form th:action="@{/vehicle/removeVehicle/} + ${car?.id} + '/'"  th:object="${vehicle}"
+                  method="delete" th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">
                 <input type="submit" value="Delete"/>
             </form>
         </td>
