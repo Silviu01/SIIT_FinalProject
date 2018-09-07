@@ -9,7 +9,9 @@
 
 <span th:if="${user != null}" th:text="${user.username}">
 </span>
+<br>
 <a th:if="${user != null}" href="/logout">Logout</a>
+
 <table th:if="${errors != null}">
     <tr th:each="error : ${errors}">
         <td th:text="${error}" style="color:red"></td>
@@ -63,23 +65,21 @@
     <tbody>
 
     <div>
-
         <img src="../../images/cars.png"
              th:src="@{/images/cars.png}" th:alt-title="#{logo}" />
-
     </div>
 
     <tr th:each="car : ${cars}">
-        <td th:text="${car.id}">1</td>
-        <td th:text="${car.vmodel}">1</td>
-        <td th:text="${car.vname}">1</td>
-        <td th:text="${car.vyear}">1</td>
-        <td th:text="${car.vcolor}">1</td>
-        <td th:text="${car.vcost}">1</td>
-        <td th:text="${car.vstatus}">1</td>
+        <td th:text="${car.id}" width="15">1</td>
+        <td th:text="${car.vmodel}" width="100" align="middle">1</td>
+        <td th:text="${car.vname}" width="100" align="middle">1</td>
+        <td th:text="${car.vyear}" width="100" align="middle">1</td>
+        <td th:text="${car.vcolor}" width="100" align="middle">1</td>
+        <td th:text="${car.vcost}" width="100" align="middle">1</td>
+        <td th:text="${car.vstatus}" width="100" align="middle">1</td>
 
-        <td>
-            <a th:href="@{/vehicle/} + ${car?.id} " th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">Update</a>
+        <td width="60">
+            <a th:href="@{/vehicle/} + ${car?.id}" th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">Update</a>
         </td>
 
         <td>

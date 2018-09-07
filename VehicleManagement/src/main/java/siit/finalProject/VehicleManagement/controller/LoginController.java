@@ -20,7 +20,7 @@ public class LoginController {
     /**
      * @return
      */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayLogin() {
         return "login";
     }
