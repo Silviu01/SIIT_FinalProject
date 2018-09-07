@@ -27,7 +27,7 @@ public class User {
         Set<String> result = new LinkedHashSet<>();
 
         if (userRoles != null){
-            userRoles.stream().forEach(userRole -> {
+            userRoles.stream().forEach((UserRole userRole) -> {
                 result.add(userRole.name());
             });
         }

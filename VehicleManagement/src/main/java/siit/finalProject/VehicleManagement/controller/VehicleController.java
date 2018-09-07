@@ -44,6 +44,7 @@ public class VehicleController {
      * @param vehicleRequest
      * @return
      */
+
     @RequestMapping(method = RequestMethod.POST, value = "/vehicle")
     public String createVehicle(@Valid CreateVehicleRequest vehicleRequest) {
         Vehicle vehicle = vehicleService.getVehicle(vehicleRequest);
@@ -51,7 +52,7 @@ public class VehicleController {
         return "redirect:/vehicle";
     }
 
-    @HasRole(role = "admin")
+    @HasRole(role = "admin") @HasRole(role = "dealer")
     @RequestMapping(method = RequestMethod.GET, value = "/vehicle/{id}")
     public String getVehicle(@PathVariable long id, Model model) {
         Vehicle vehicle = vehicleService.getById(id);
@@ -65,6 +66,7 @@ public class VehicleController {
      * @param id
      * @return
      */
+
     @RequestMapping(method = RequestMethod.POST, value = "/vehicle/update/{id}")
     public String updateVehicle(CreateVehicleRequest vehicleRequest, @PathVariable long id) {
         Vehicle vehicle = vehicleService.getVehicle(vehicleRequest);

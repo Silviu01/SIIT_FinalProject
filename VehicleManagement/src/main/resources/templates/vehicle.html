@@ -63,8 +63,10 @@
     <tbody>
 
     <div>
-        <img th:src="@{/resources/static/images/car-967470_960_720.png}" />
-        <img th:src="@{/resources/static/images/car1.png}" />
+
+        <img src="../../images/cars.png"
+             th:src="@{/images/cars.png}" th:alt-title="#{logo}" />
+
     </div>
 
     <tr th:each="car : ${cars}">
@@ -77,11 +79,11 @@
         <td th:text="${car.vstatus}">1</td>
 
         <td>
-            <a th:href="@{/vehicle/} + ${car?.id} " th:if="${#sets.contains(user.rolesAsString, 'admin')}">Update</a>
+            <a th:href="@{/vehicle/} + ${car?.id} " th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">Update</a>
         </td>
 
         <td>
-            <form th:action="@{/vehicle/removeVehicle/} + ${car?.id} + '/'" th:object="${vehicle}" method="delete">
+            <form th:action="@{/vehicle/removeVehicle/} + ${car?.id} + '/'"  th:object="${vehicle}" method="delete">
                 <input type="submit" value="Delete"/>
             </form>
         </td>
