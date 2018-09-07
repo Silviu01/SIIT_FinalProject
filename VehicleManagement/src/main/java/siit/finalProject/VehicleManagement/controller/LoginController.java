@@ -43,7 +43,7 @@ public class LoginController {
         } catch (InvalidCredentials invalidCredentials) {
             model.addAttribute("error1", "Invalid Credentials");
         }
-        return "login";
+        return "/login";
     }
 
     /**

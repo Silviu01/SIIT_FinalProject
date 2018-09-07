@@ -18,11 +18,17 @@
     </tr>
 </table>
 
-<span th:text="${message}"></span>
 
-<p th:text="'Add new car:'" />
 
-<form action="#" th:action="@{/vehicle}" th:object="${createVehicleRequest}" method="post">
+<p th:text="'Add new car:'"  th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}"/>
+
+<span th:text="${message1}"></span>
+
+
+<span th:text="${message1}" style="color:blue"></span>
+
+
+<form action="#" th:action="@{/vehicle}" th:object="${createVehicleRequest}" method="post" th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">
     <div>
         <label th:for="${vmodel}">Model: </label>
         <input type="text" id="vmodel" name="vmodel"/>
@@ -69,7 +75,7 @@
              th:src="@{/images/cars.png}" th:alt-title="#{logo}" />
     </div>
 
-    <tr th:each="car : ${cars}">
+    <tr th:each="car : ${cars}" >
         <td th:text="${car.id}" width="15">1</td>
         <td th:text="${car.vmodel}" width="100" align="middle">1</td>
         <td th:text="${car.vname}" width="100" align="middle">1</td>
@@ -83,7 +89,7 @@
         </td>
 
         <td>
-            <form th:action="@{/vehicle/removeVehicle/} + ${car?.id} + '/'"  th:object="${vehicle}" method="delete">
+            <form th:action="@{/vehicle/removeVehicle/} + ${car?.id} + '/'"  th:object="${vehicle}" method="delete" th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">
                 <input type="submit" value="Delete"/>
             </form>
         </td>

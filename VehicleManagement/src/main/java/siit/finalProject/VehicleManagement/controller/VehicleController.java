@@ -79,11 +79,13 @@ public class VehicleController {
      * @param id
      * @return
      */
+    @HasRole(role = "admin") @HasRole(role = "dealer")
     @RequestMapping(method = RequestMethod.GET, value = "vehicle/removeVehicle/{id}")
     public String removeVehicle(Model model, @PathVariable(name = "id") int id){
         vehicleService.removeVehicle(id);
-        model.addAttribute("message", "Car deleted");
+        model.addAttribute("message1", "Car deleted");
         model.addAttribute("cars", vehicleService.getAllVehicles());
+
         return "redirect:/vehicle";
         //TODO restrict acces for customer on DELETE button and createVehicle/addNewCar
     }
