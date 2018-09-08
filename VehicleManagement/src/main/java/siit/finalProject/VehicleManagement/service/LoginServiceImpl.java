@@ -34,7 +34,7 @@ public class LoginServiceImpl implements LoginService {
      * @return
      * @throws RuntimeException
      */
-    private String encodePass(String pass) throws RuntimeException {
+    public String encodePass(String pass) throws RuntimeException {
         try {
             return DigestUtils.md5Hex(pass);
         } catch (Exception ex) {
@@ -45,7 +45,7 @@ public class LoginServiceImpl implements LoginService {
     // TODO !!! delete this !!!
     public static void main(String[] args) {
         LoginServiceImpl loginService = new LoginServiceImpl();
-        String encoded = loginService.encodePass("tgr");
+        String encoded = loginService.encodePass("andu");
         System.out.println(encoded);
     }
 }

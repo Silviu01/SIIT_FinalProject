@@ -1,5 +1,7 @@
 package siit.finalProject.VehicleManagement.domain;
 
+import siit.finalProject.VehicleManagement.service.LoginServiceImpl;
+
 public class RegisterUser {
 
     private int id;
@@ -52,7 +54,8 @@ public class RegisterUser {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        LoginServiceImpl loginService = new LoginServiceImpl();
+        this.password = loginService.encodePass(password);
     }
 
     public String getMobile() {
