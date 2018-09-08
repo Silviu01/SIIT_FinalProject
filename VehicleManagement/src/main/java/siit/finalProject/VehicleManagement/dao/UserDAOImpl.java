@@ -5,12 +5,14 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import siit.finalProject.VehicleManagement.domain.RegisterUser;
 import siit.finalProject.VehicleManagement.domain.User;
 import siit.finalProject.VehicleManagement.domain.UserRole;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -47,4 +49,46 @@ public class UserDAOImpl implements UserDAO {
             return null;
         }
     }
+
+    //toDo getAllUsers
+
+    @Override
+    public void createUser(RegisterUser registerUser) {
+        jdbcTemplate.update("INSERT INTO users (email, username, password, mobile, address, roles) VALUES" +
+                        " (?, ?, ?, ?, ?, ?)", registerUser.getEmail(), registerUser.getUsername(), registerUser.getPassword(), registerUser.getMobile(),
+                registerUser.getAddress(), "customer");
+
+    }
+
+    @Override
+    public void updateUser(RegisterUser registerUser, int id) {
+        jdbcTemplate.update("UPDATE users SET email = ?, username = ?, password = ?, mobile = ?, address = ?" +
+                        "WHERE users.id = ?", registerUser.getEmail(), registerUser.getUsername(), registerUser.getPassword(), registerUser.getMobile(),
+                registerUser.getAddress());
+    }
+
+    @Override
+    public RegisterUser getById(int id) {
+        List<RegisterUser> registerUsers = jdbcTemplate.query("SELECT * FROM users WHERE users.id = ?",
+                (ResultSet resultSet, int i) -> {
+                    RegisterUser registerUSer = getRegisterUserFromDB(resultSet);
+                    return registerUSer;
+                }, id);
+        return registerUsers.get(0);
+    }
+
+    private RegisterUser getRegisterUserFromDB(ResultSet resultSet) throws SQLException {
+        RegisterUser registerUser = new RegisterUser();
+        registerUser.setId(resultSet.getInt("id"));
+        registerUser.setEmail(resultSet.getString("email"));
+        registerUser.setUsername(resultSet.getString("username"));
+        registerUser.setPassword(resultSet.getString("password"));
+        registerUser.setMobile(resultSet.getString("mobile"));
+        registerUser.setAddress(resultSet.getString("address"));
+        registerUser.setRoles(UserRole.valueOf(resultSet.getString("roles")));
+
+        return registerUser;
+    }
+
+
 }

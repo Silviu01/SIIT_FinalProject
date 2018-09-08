@@ -23,8 +23,6 @@
 <p th:text="'Add new car:'"  th:if="${#sets.contains(user.rolesAsString, 'admin')
  or #sets.contains(user.rolesAsString, 'dealer')}"/>
 
-<span th:text="${message1}"></span>
-
 
 <span th:text="${message1}" style="color:blue"></span>
 
