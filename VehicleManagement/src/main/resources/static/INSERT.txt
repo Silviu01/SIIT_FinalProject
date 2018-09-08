@@ -12,7 +12,7 @@ INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Aud
 
 
 INSERT INTO Users (email, username, password, mobile, address, roles)
-VALUES ('gicu@gmail.com', 'gicu78', '6261726f73616e75','07453528998','Str. Vindecarii nr.2 ap.4 cluj napoca','user'); --123
+VALUES ('gicu@gmail.com', 'gicu78', '202cb962ac59075b964b07152d234b70','07453528998','Str. Vindecarii nr.2 ap.4 cluj napoca','admin'); --123
 
 INSERT INTO Users (email, username, password, mobile, address, roles)
 VALUES ('gi@gmail.com', 'dealer', 'caf1a3dfb505ffed0d024130f58c5cfa','07453528998','Str. Vinului nr.2 ap.4 cluj napoca','dealer'); --321

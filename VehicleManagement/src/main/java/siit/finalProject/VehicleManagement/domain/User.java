@@ -5,8 +5,11 @@ import java.util.Set;
 
 public class User {
 
-    public String username;
-    public Set<UserRole> userRoles;
+    private String username;
+    private Set<UserRole> userRoles;
+
+    public User() {
+    }
 
     public String getUsername() {
         return username;
@@ -20,11 +23,14 @@ public class User {
         return userRoles;
     }
 
+    /**
+     * @return
+     */
     public Set<String> getRolesAsString() {
         Set<String> result = new LinkedHashSet<>();
 
         if (userRoles != null){
-            userRoles.stream().forEach(userRole -> {
+            userRoles.stream().forEach((UserRole userRole) -> {
                 result.add(userRole.name());
             });
         }

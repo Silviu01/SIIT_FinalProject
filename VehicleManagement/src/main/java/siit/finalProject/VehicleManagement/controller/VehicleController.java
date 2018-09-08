@@ -25,6 +25,11 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
+    /**
+     * @param model
+     * @param request
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/vehicle")
     public String listVehicles(Model model, HttpServletRequest request) {
         List<Vehicle> vehicleList = vehicleService.getAllVehicles();
@@ -35,6 +40,10 @@ public class VehicleController {
         return "vehicle";
     }
 
+    /**
+     * @param vehicleRequest
+     * @return
+     */
 
     @RequestMapping(method = RequestMethod.POST, value = "/vehicle")
     public String createVehicle(@Valid CreateVehicleRequest vehicleRequest) {
@@ -43,7 +52,7 @@ public class VehicleController {
         return "redirect:/vehicle";
     }
 
-    @HasRole(role = "admin")
+    @HasRole(role = "admin") @HasRole(role = "dealer")
     @RequestMapping(method = RequestMethod.GET, value = "/vehicle/{id}")
     public String getVehicle(@PathVariable long id, Model model) {
         Vehicle vehicle = vehicleService.getById(id);
@@ -52,6 +61,11 @@ public class VehicleController {
         return "updateVehicle";
     }
 
+    /**
+     * @param vehicleRequest
+     * @param id
+     * @return
+     */
 
     @RequestMapping(method = RequestMethod.POST, value = "/vehicle/update/{id}")
     public String updateVehicle(CreateVehicleRequest vehicleRequest, @PathVariable long id) {
@@ -60,22 +74,19 @@ public class VehicleController {
         return "redirect:/vehicle";
     }
 
-
-
+    /**
+     * @param model
+     * @param id
+     * @return
+     */
+    @HasRole(role = "admin") @HasRole(role = "dealer")
     @RequestMapping(method = RequestMethod.GET, value = "vehicle/removeVehicle/{id}")
     public String removeVehicle(Model model, @PathVariable(name = "id") int id){
         vehicleService.removeVehicle(id);
-        model.addAttribute("message", "Car deleted");
+        model.addAttribute("message1", "Car deleted");
         model.addAttribute("cars", vehicleService.getAllVehicles());
+
         return "redirect:/vehicle";
+        //TODO restrict acces for customer on DELETE button and createVehicle/addNewCar
     }
-
-
-//    @RequestMapping(method = RequestMethod.POST, value = "/vehicle/delete/{id}")
-//    public String removeVehicle(@PathVariable int id, Model model) {
-//        vehicleService.removeVehicle(id);
-//        return "redirect:/vehicle";
-//    }
-
-
 }

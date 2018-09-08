@@ -22,11 +22,18 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleDao.getAllVehicles();
     }
 
+    /**
+     * @param vehicle
+     */
     @Override
     public void createVehicle(Vehicle vehicle) {
         vehicleDao.createVehicle(vehicle);
     }
 
+    /**
+     * @param vehicle
+     * @param id
+     */
     @Override
     public void updateVehicle(Vehicle vehicle, long id) {
         vehicles = vehicles.stream().filter(vehicle1 -> vehicle1.getId() != id).collect(Collectors.toList());
@@ -35,28 +42,27 @@ public class VehicleServiceImpl implements VehicleService {
         vehicleDao.updateVehicle(vehicle, id);
     }
 
+    /**
+     * @param id
+     * @return
+     */
     @Override
     public Vehicle getById(long id) {
         return vehicleDao.getById(id);
     }
 
-
+    /**
+     * @param id
+     */
     @Override
     public void removeVehicle(long id) {
-//        long indexToRemove = -1;
-//
-//        for (int i = 0; i < vehicles.size(); i++)
-//            if (vehicles.get(i).getId() == id) {
-//                indexToRemove = 0;
-//            }
-//        if (indexToRemove >= 0) {
-//            vehicles.remove(indexToRemove);
-//        }
         vehicleDao.removeVehicle(id);
-
     }
 
-
+    /**
+     * @param vehicleRequest
+     * @return
+     */
     @Override
     public Vehicle getVehicle(CreateVehicleRequest vehicleRequest) {
         Vehicle vehicle = new Vehicle();
@@ -70,6 +76,10 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicle;
     }
 
+    /**
+     * @param vehicle
+     * @return
+     */
     @Override
     public CreateVehicleRequest getVehicleRequest(Vehicle vehicle) {
         CreateVehicleRequest vehicleRequest = new CreateVehicleRequest();
@@ -81,6 +91,4 @@ public class VehicleServiceImpl implements VehicleService {
 
         return vehicleRequest;
     }
-
-
 }

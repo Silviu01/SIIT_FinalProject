@@ -13,20 +13,27 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private UserDAO userDAO;
 
+    /**
+     * @param username
+     * @param pass
+     * @return
+     * @throws InvalidCredentials
+     */
     @Override
     public User login(String username, String pass) throws InvalidCredentials {
-
         encodePass(pass);
         User user = userDAO.getUserByCredentials(username, encodePass(pass));
-
-
-
         if(user == null){
             throw new InvalidCredentials();
         }
         return user;
     }
 
+    /**
+     * @param pass
+     * @return
+     * @throws RuntimeException
+     */
     private String encodePass(String pass) throws RuntimeException {
 
         try {
@@ -39,7 +46,7 @@ public class LoginServiceImpl implements LoginService {
     // TODO !!! delete this !!!
     public static void main(String[] args) {
         LoginServiceImpl loginService = new LoginServiceImpl();
-        String encoded = loginService.encodePass("222");
+        String encoded = loginService.encodePass("123");
         System.out.println(encoded);
     }
 }

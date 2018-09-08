@@ -7,27 +7,40 @@
 
 <body>
 
-<div th:if="${error != null}">
-    <p th:text="${error}" style="color:red"></p>
+<h1>Welcome </h1>
+
+
+<div th:if="${error1 != null}">
+    <p th:text="${error1}" style="color:red"></p>
 </div>
 
 <form action="#" th:action="@{/login}" method="post">
 
     <div>
-        <label >Username</label>
-        <input type="text" id="username" name="username"  />
+        <p>Username: <input type="text" id="username" name="username" /></p>
     </div>
 
     <div>
-        <label>Pass</label>
-        <input type="password" id="password" name="password" />
+        <p>Password: <input type="password" id="password" name="password" /></p>
     </div>
-
 
     <div>
         <input type="submit" id="login" name="login" value="Login"/>
     </div>
+
 </form>
+
+<br>
+
+<div>
+    <a href = "http://localhost:8090/register" >Register</a>
+</div>
+
+<br>
+<div>
+    <img src="../../images/cars.png"
+         th:src="@{/images/cars.png}" th:alt-title="#{logo}" />
+</div>
 
 </body>
 </html>
