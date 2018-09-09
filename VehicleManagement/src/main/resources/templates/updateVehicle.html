@@ -11,12 +11,12 @@
 
 <form action="#" th:action="@{/vehicle/update/} + ${vehicleId} + '/'" th:object="${updateVehicleRequest}" method="post">
     <div2>
-        <label th:for="${vmodel}">Model: </label>
-        <input type="text" id="vmodel" name="vmodel" th:value="*{vmodel}" size="30"/>
-        <br>
-        <br>
         <label th:for="${vname}">Name: </label>
         <input type="text" id="vname" name="vname" th:value="*{vname}"/>
+        <br>
+        <br>
+        <label th:for="${vmodel}">Model: </label>
+        <input type="text" id="vmodel" name="vmodel" th:value="*{vmodel}"/>
         <br>
         <br>
         <label th:for="${vyear}">Year: </label>

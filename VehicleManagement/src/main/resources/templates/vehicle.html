@@ -47,11 +47,12 @@
           method="post"
           th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">
         <div2>
-            <label th:for="${vmodel}">Model: </label>
-            <input type="text" id="vmodel" name="vmodel"/>
 
             <label th:for="${vname}">Name: </label>
             <input type="text" id="vname" name="vname"/>
+
+            <label th:for="${vmodel}">Model: </label>
+            <input type="text" id="vmodel" name="vmodel"/>
 
             <label th:for="${vyear}">Year: </label>
             <input type="text" id="vyear" name="vyear"/>
@@ -74,8 +75,8 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Model</th>
             <th>Name</th>
+            <th>Model</th>
             <th>Year</th>
             <th>Color</th>
             <th>Cost</th>
@@ -87,8 +88,8 @@
 
         <tr th:each="car : ${cars}">
             <td th:text="${car.id}" width="15">1</td>
-            <td th:text="${car.vmodel}" width="100" align="middle">1</td>
             <td th:text="${car.vname}" width="100" align="middle">1</td>
+            <td th:text="${car.vmodel}" width="100" align="middle">1</td>
             <td th:text="${car.vyear}" width="100" align="middle">1</td>
             <td th:text="${car.vcolor}" width="100" align="middle">1</td>
             <td th:text="${car.vcost}" width="100" align="middle">1</td>
