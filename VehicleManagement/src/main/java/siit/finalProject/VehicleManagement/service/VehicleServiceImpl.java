@@ -83,6 +83,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public CreateVehicleRequest getVehicleRequest(Vehicle vehicle) {
         CreateVehicleRequest vehicleRequest = new CreateVehicleRequest();
+
         vehicleRequest.setVmodel(vehicle.getVmodel());
         vehicleRequest.setVname(vehicle.getVname());
         vehicleRequest.setVyear(vehicle.getVyear());

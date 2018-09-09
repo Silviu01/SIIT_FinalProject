@@ -45,7 +45,7 @@ public class VehicleDaoImpl implements VehicleDao {
     @Override
     public Vehicle getById(long id) {
         List<Vehicle> vehicles = jdbcTemplate.query("SELECT * FROM vehicles WHERE vehicles.id= ?",
-                (resultSet, i) -> {
+                (ResultSet resultSet, int i) -> {
                     Vehicle vehicle = getVehicleFromDB(resultSet);
                     return vehicle;
                 }, id);

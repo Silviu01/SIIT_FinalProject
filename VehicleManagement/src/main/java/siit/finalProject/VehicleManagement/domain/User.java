@@ -8,8 +8,6 @@ public class User {
     private String username;
     private Set<UserRole> userRoles;
 
-    public User() {
-    }
 
     public String getUsername() {
         return username;
@@ -28,18 +26,15 @@ public class User {
      */
     public Set<String> getRolesAsString() {
         Set<String> result = new LinkedHashSet<>();
-
         if (userRoles != null){
             userRoles.stream().forEach((UserRole userRole) -> {
                 result.add(userRole.name());
             });
         }
-
         return result;
     }
 
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
-
 }
