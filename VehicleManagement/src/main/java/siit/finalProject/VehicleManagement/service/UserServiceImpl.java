@@ -47,15 +47,14 @@ public class UserServiceImpl implements UserService {
 //    this is for update user
     @Override
     public RegisterUserRequest getRegisterUserRequest(RegisterUser registerUser) {
-//        RegisterUserRequest registerUserRequest = new RegisterUserRequest();
-//
-//        registerUserRequest.setEmail(registerUser.getEmail());
+        RegisterUserRequest registerUserRequest = new RegisterUserRequest();
+
+        registerUserRequest.setEmail(registerUser.getEmail());
 //        registerUserRequest.setUsername(registerUser.getUsername());
 //        registerUserRequest.setPassword(registerUser.getPassword());
-//        registerUserRequest.setMobile(registerUser.getMobile());
-//        registerUserRequest.setAddress(registerUser.getAddress());
-//
-//        return registerUserRequest;
-          return null;
+        registerUserRequest.setMobile(registerUser.getMobile());
+        registerUserRequest.setAddress(registerUser.getAddress());
+
+        return registerUserRequest;
     }
 }

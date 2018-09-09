@@ -1,6 +1,5 @@
 package siit.finalProject.VehicleManagement.service;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import siit.finalProject.VehicleManagement.dao.UserDAO;
@@ -13,6 +12,7 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private UserDAO userDAO;
 
+
     /**
      * @param username
      * @param pass
@@ -21,31 +21,14 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public User login(String username, String pass) throws InvalidCredentials {
-        encodePass(pass);
-        User user = userDAO.getUserByCredentials(username, encodePass(pass));
+        EncodePassword encode = new EncodePassword();
+        encode.encodePass(pass);
+        User user = userDAO.getUserByCredentials(username, encode.encodePass(pass));
         if(user == null){
             throw new InvalidCredentials();
         }
         return user;
     }
 
-    /**
-     * @param pass
-     * @return
-     * @throws RuntimeException
-     */
-    public String encodePass(String pass) throws RuntimeException {
-        try {
-            return DigestUtils.md5Hex(pass);
-        } catch (Exception ex) {
-            throw new RuntimeException("Encoding problem");
-        }
-    }
 
-    // TODO !!! delete this !!!
-    public static void main(String[] args) {
-        LoginServiceImpl loginService = new LoginServiceImpl();
-        String encoded = loginService.encodePass("andu");
-        System.out.println(encoded);
-    }
 }

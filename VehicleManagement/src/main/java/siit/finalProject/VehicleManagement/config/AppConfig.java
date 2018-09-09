@@ -11,9 +11,9 @@ import javax.sql.DataSource;
 public class AppConfig {
 
     private static final int PORT = 5432;
-    private static final String DB = "vehicles";       //"VehicleSystem";
+    private static final String DB = "VehicleSystem";       //"VehicleSystem";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";     //"hetfield";
+    private static final String PASSWORD = "hetfield";     //"hetfield";
 
     @Bean
     public JdbcTemplate jdbcTemplate() {

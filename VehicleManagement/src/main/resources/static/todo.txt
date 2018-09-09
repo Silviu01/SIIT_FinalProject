@@ -8,4 +8,8 @@
 
 5. drop down list for year
 
-6. remove add car from "/vehicle"
+7. "Cancel" button in create new car, new user etc.
+
+8. search field
+
+9. logger

@@ -1,6 +1,6 @@
 package siit.finalProject.VehicleManagement.domain;
 
-import siit.finalProject.VehicleManagement.service.LoginServiceImpl;
+import siit.finalProject.VehicleManagement.service.EncodePassword;
 
 public class RegisterUser {
 
@@ -54,8 +54,8 @@ public class RegisterUser {
     }
 
     public void setPassword(String password) {
-        LoginServiceImpl loginService = new LoginServiceImpl();
-        this.password = loginService.encodePass(password);
+        EncodePassword encode = new EncodePassword();
+        this.password = encode.encodePass(password);
     }
 
     public String getMobile() {

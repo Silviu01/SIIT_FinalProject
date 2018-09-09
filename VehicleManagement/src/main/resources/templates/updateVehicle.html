@@ -4,39 +4,37 @@
 <head>
     <title>Update Vehicle</title>
     <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{../../style.css}">
 </head>
 <body>
-
+<div>
 
 <form action="#" th:action="@{/vehicle/update/} + ${vehicleId} + '/'" th:object="${updateVehicleRequest}" method="post">
-    <div>
+    <div2>
         <label th:for="${vmodel}">Model: </label>
-        <input type="text" id="vmodel" name="vmodel" th:value="*{vmodel}"/>
-    </div>
-
-    <div>
+        <input type="text" id="vmodel" name="vmodel" th:value="*{vmodel}" size="30"/>
+        <br>
+        <br>
         <label th:for="${vname}">Name: </label>
         <input type="text" id="vname" name="vname" th:value="*{vname}"/>
-    </div>
-
-    <div>
+        <br>
+        <br>
         <label th:for="${vyear}">Year: </label>
         <input type="text" id="vyear" name="vyear" th:value="*{vyear}"/>
-    </div>
-
-    <div>
+        <br>
+        <br>
         <label th:for="${vcolor}">Color: </label>
         <input type="text" id="vcolor" name="vcolor" th:value="*{vcolor}"/>
-    </div>
-
-    <div>
+        <br>
+        <br>
         <label th:for="${vcost}">Price: </label>
         <input type="text" id="vcost" name="vcost" th:value="*{vcost}"/>
-    </div>
+    </div2>
 
-    <div>
+    <div5>
         <input type="submit" id="doUpdate" name="save vehicle" value="Update car"/>
-    </div>
+    </div5>
 </form>
+</div>
 </body>
 </html>
