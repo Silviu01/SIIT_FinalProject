@@ -13,7 +13,13 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAOImpl userDAO;
-    private List<RegisterUser> registerUsers;
+//    private List<RegisterUser> registerUsers;
+
+
+    @Override
+    public List<RegisterUser> getAllUsers() {
+        return userDAO.getAllUsers();
+    }
 
     @Override
     public void createUser(RegisterUser registerUser) {

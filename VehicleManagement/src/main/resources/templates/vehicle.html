@@ -21,12 +21,16 @@
 
 <div4>
     <span th:if="${user != null}" th:text="${user.username}">
-</span>
+
+    </span>
     <br>
+
     <a th:if="${user != null}" href="/logout">Logout</a>
+
     <td width="60">
-        <a th:if="${user != null}" th:href="@{/updateUser/} + ${userId}">My Profile</a>
+        <a th:if="${user != null}" th:href="@{/getUsers/} + ${userId}">My Profile</a>
     </td>
+
 </div4>
     <table th:if="${errors != null}">
         <tr th:each="error : ${errors}">

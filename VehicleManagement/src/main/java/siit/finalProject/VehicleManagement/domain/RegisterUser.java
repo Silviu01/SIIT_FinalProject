@@ -2,6 +2,9 @@ package siit.finalProject.VehicleManagement.domain;
 
 import siit.finalProject.VehicleManagement.service.EncodePassword;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class RegisterUser {
 
     private int id;
@@ -11,6 +14,7 @@ public class RegisterUser {
     private String mobile;
     private String address;
     private UserRole roles;
+    private Set<UserRole> userRoles;
 
     public RegisterUser() {
     }
@@ -78,7 +82,25 @@ public class RegisterUser {
         return roles;
     }
 
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
     public void setRoles(UserRole roles) {
         this.roles = roles;
+    }
+
+    public void setUserRoles(UserRole userRoles) {
+        this.roles = userRoles;
+    }
+
+    public Set<String> getRolesAsString() {
+        Set<String> result = new LinkedHashSet<>();
+        if (userRoles != null){
+            userRoles.stream().forEach((UserRole userRole) -> {
+                result.add(userRole.name());
+            });
+        }
+        return result;
     }
 }

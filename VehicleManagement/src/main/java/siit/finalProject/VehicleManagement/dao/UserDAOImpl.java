@@ -50,6 +50,14 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    @Override
+    public List<RegisterUser> getAllUsers() {
+        return jdbcTemplate.query("SELECT * FROM users", (resultSet, i) -> {
+            RegisterUser user = getRegisterUserFromDB(resultSet);
+            return user;
+        });
+    }
+
     //toDo getAllUsers
 
     @Override
@@ -89,6 +97,4 @@ public class UserDAOImpl implements UserDAO {
 
         return registerUser;
     }
-
-
 }
