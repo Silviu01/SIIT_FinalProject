@@ -1,17 +1,13 @@
 package siit.finalProject.VehicleManagement.domain;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class User {
 
-    public String username;
-    public String password;
+    private String username;
+    private Set<UserRole> userRoles;
 
-    public User() {
-    }
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
     public String getUsername() {
         return username;
@@ -21,11 +17,24 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    /**
+     * @return
+     */
+    public Set<String> getRolesAsString() {
+        Set<String> result = new LinkedHashSet<>();
+        if (userRoles != null){
+            userRoles.stream().forEach((UserRole userRole) -> {
+                result.add(userRole.name());
+            });
+        }
+        return result;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 }

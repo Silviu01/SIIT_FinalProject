@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{../../style.css}">
+
+</head>
+
+<body>
+<div>
+    <div1>
+        <p1>Register to get exclusive discounts!</p1>
+        <br>
+    </div1>
+
+    <p>Insert required details below</p>
+
+    <form action="#" th:action="@{/register}" th:object="${registerUserRequest}" method="post">
+
+        <div2>
+            <label th:for="${email}">Email: </label>
+            <input type="text" id="email" name="email"/>
+            <br>
+            <br>
+            <label th:for="${username}">Username: </label>
+            <input type="text" id="username" name="username"/>
+            <br>
+            <br>
+            <label th:for="${password}">Password: </label>
+            <input type="text" id="password" name="password"/>
+            <br>
+            <br>
+            <label th:for="${mobile}">Mobile: </label>
+            <input type="text" id="mobile" name="mobile"/>
+            <br>
+            <br>
+            <label th:for="${address}">Address: </label>
+            <input type="text" id="address" name="address"/>
+        </div2>
+
+        <div5>
+            <input type="submit" id="doUpdate" name="save user" value="Register"/>
+        </div5>
+
+    </form>
+
+    <br>
+
+</div>
+</body>
+</html>

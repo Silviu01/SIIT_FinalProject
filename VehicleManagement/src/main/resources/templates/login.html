@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vehicle Dealership</title>
+    <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+<div class="content">
+    <img align="middle" src="../../images/cars.png"
+         th:src="@{/images/cars.png}" th:alt-title="#{logo}"/>
+
+    <div1>
+        <p1>Welcome </p1>
+        <br>
+    </div1>
+
+
+    <div4 th:if="${error1 != null}">
+        <p th:text="${error1}" style="color:red"></p>
+    </div4>
+
+    <form action="#" th:action="@{/login}" method="post">
+
+        <div2>
+            <p>Username: <input type="text" id="username" name="username"/></p>
+            <p>Password: <input type="password" id="password" name="password"/></p>
+            <br><br>
+            <input type="submit" id="login" name="login" value="Login"/>
+        </div2>
+
+    </form>
+
+    <br>
+
+    <div3>
+        <a href="http://localhost:8090/register">Register</a>
+    </div3>
+
+    <br>
+    </div>
+
+</body>
+</html>

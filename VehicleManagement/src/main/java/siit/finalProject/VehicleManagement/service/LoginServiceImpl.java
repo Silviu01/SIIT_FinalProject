@@ -1,22 +1,33 @@
 package siit.finalProject.VehicleManagement.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import siit.finalProject.VehicleManagement.dao.UserDAO;
 import siit.finalProject.VehicleManagement.domain.User;
+import siit.finalProject.VehicleManagement.exceptionsHandler.InvalidCredentials;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Service
 public class LoginServiceImpl implements LoginService {
 
-    List<User> users = new ArrayList<>();
+    @Autowired
+    private UserDAO userDAO;
 
-    @Override
-    public List<User> getAllUsers() {
-        return users;
-    }
 
+    /**
+     * @param username
+     * @param pass
+     * @return
+     * @throws InvalidCredentials
+     */
     @Override
-    public void createUser(User user) {
-        users.add(user);
+    public User login(String username, String pass) throws InvalidCredentials {
+        EncodePassword encode = new EncodePassword();
+        encode.encodePass(pass);
+        User user = userDAO.getUserByCredentials(username, encode.encodePass(pass));
+        if(user == null){
+            throw new InvalidCredentials();
+        }
+        return user;
     }
 
 
