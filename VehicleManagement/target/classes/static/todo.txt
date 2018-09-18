@@ -1,0 +1,15 @@
+1. check update functionality for "not null" / implement exception in java
+
+2. implement dealer
+
+3. change vehicle status - automatic
+
+4. exception for year not null
+
+5. drop down list for year
+
+7. "Cancel" button in create new car, new user etc.
+
+8. search field
+
+9. logger

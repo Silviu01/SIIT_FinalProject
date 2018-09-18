@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+
+<head>
+    <title>Vehicle Dealership - Overview</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{../../style.css}">
+</head>
+
+<body>
+<div class="content">
+    <img align="middle" src="../../images/cars.png"
+         th:src="@{/images/cars.png}" th:alt-title="#{logo}"/>
+
+
+    <div1>
+        <p1>Vehicle Dealership - Overview</p1>
+        <br>
+    </div1>
+
+<div4>
+    <span th:if="${user != null}" th:text="${user.username}">
+
+    </span>
+    <br>
+
+    <a th:if="${user != null}" href="/logout">Logout</a>
+
+    <td width="60">
+        <a th:if="${user != null}" th:href="@{/getUsers/} + ${userId}">My Profile</a>
+    </td>
+
+</div4>
+    <table th:if="${errors != null}">
+        <tr th:each="error : ${errors}">
+            <td th:text="${error}" style="color:red"></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+
+    <p th:text="'Add new car:'" th:if="${#sets.contains(user.rolesAsString, 'admin')
+ or #sets.contains(user.rolesAsString, 'dealer')}"/>
+
+
+    <span th:text="${message1}" style="color:blue"></span>
+
+
+    <form action="#" th:action="@{/vehicle}" th:object="${createVehicleRequest}"
+          method="post"
+          th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">
+        <div2>
+
+            <label th:for="${vname}">Name: </label>
+            <input type="text" id="vname" name="vname"/>
+
+            <label th:for="${vmodel}">Model: </label>
+            <input type="text" id="vmodel" name="vmodel"/>
+
+            <label th:for="${vyear}">Year: </label>
+            <input type="text" id="vyear" name="vyear"/>
+            <br>
+            <br>
+            <label th:for="${vcolor}">Color: </label>
+            <input type="text" id="vcolor" name="vcolor"/>
+
+            <label th:for="${vcost}">Price: </label>
+            <input type="text" id="vcost" name="vcost"/>
+            <br>
+            <br>
+            <input type="submit" id="doUpdate" name="save vehicle" value="Add car"/>
+        </div2>
+    </form>
+
+    <br><br>
+
+    <table id="vehicles">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Color</th>
+            <th>Cost</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.id}" width="15">1</td>
+            <td th:text="${car.vname}" width="100" align="middle">1</td>
+            <td th:text="${car.vmodel}" width="100" align="middle">1</td>
+            <td th:text="${car.vyear}" width="100" align="middle">1</td>
+            <td th:text="${car.vcolor}" width="100" align="middle">1</td>
+            <td th:text="${car.vcost}" width="100" align="middle">1</td>
+            <td th:text="${car.vstatus}" width="100" align="middle">1</td>
+
+            <td width="60">
+                <a th:href="@{/vehicle/} + ${car?.id}" th:if="${#sets.contains(user.rolesAsString, 'admin')
+            or #sets.contains(user.rolesAsString, 'dealer')}">Update</a>
+            </td>
+
+            <td>
+                <form th:action="@{/vehicle/removeVehicle/} + ${car?.id} + '/'" th:object="${vehicle}"
+                      method="delete"
+                      th:if="${#sets.contains(user.rolesAsString, 'admin') or #sets.contains(user.rolesAsString, 'dealer')}">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

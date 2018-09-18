@@ -1,0 +1,21 @@
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Mercedes-Benz', 'C 220', 2007,'White',8750,'Available');
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('BMW', 'Seria 5 520', 2015,'Black',17999,'Available');
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Opel', 'Isignia', 2014,'Black',15500,'Available');
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Mazda', 'CX-5', 2014,'Silver',12590,'Available');
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Ford', 'Kuga', 2011,'White',12800,'Available');
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Fiat', '500', 2008,'White',11490,'Available');
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Renault', 'Clio IV', 2014,'Silver',5900,'Available');
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Renault', 'Talisman', 2007,'White',8750,'Available');
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Ford', 'Mondeo Mk4', 2014,'White',7974,'Available');
+INSERT INTO vehicles (vname, vmodel, vyear, vcolor, vcost, vstatus) VALUES ('Audi', 'A7', 2017,'Black',39890,'Available');
+
+
+
+INSERT INTO Users (email, username, password, mobile, address, roles)
+VALUES ('gicu@gmail.com', 'gicu78', '202cb962ac59075b964b07152d234b70','07453528998','Str. Vindecarii nr.2 ap.4 cluj napoca','admin'); --123
+
+INSERT INTO Users (email, username, password, mobile, address, roles)
+VALUES ('gi@gmail.com', 'dealer', 'caf1a3dfb505ffed0d024130f58c5cfa','07453528998','Str. Vinului nr.2 ap.4 cluj napoca','dealer'); --321
+
+INSERT INTO Users (email, username, password, mobile, address, roles)
+VALUES ('cst@gmail.com', 'cst', 'bcbe3365e6ac95ea2c0343a2395834dd','07453528998','Str. Vinului nr.2 ap.4 cluj napoca','customer'); --222
