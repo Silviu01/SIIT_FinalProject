@@ -50,10 +50,10 @@ public class RegisterController {
         RegisterUser registerUser = userService.getById(id);
         model.addAttribute("updateRegisterUserRequest", userService.getRegisterUserRequest(registerUser));
         model.addAttribute("userId", id);
-        return "vehicle";
+        return "updateUserDetails";
     }
 
-    @RequestMapping (value = "/getUsers/updateUserDetails/{id}", method = RequestMethod.POST)
+    @RequestMapping (value = "/getUsers/update/{id}", method = RequestMethod.POST)
     public String updateUserDetails (RegisterUserRequest registerUserRequest, @PathVariable int id){
         RegisterUser registerUser = userService.getUser(registerUserRequest);
         userService.updateUser(registerUser, id);

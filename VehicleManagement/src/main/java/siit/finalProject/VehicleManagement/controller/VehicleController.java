@@ -66,7 +66,6 @@ public class VehicleController {
      * @param id
      * @return
      */
-
     @RequestMapping(method = RequestMethod.POST, value = "/vehicle/update/{id}")
     public String updateVehicle(CreateVehicleRequest vehicleRequest, @PathVariable long id) {
         Vehicle vehicle = vehicleService.getVehicle(vehicleRequest);
