@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+
     <title>Registered Users</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 
 
 <body>
+<div>
 
 <div>
     <p>Users - Overview</p>
     <br>
 </div>
 
-<br><br>
+<br>
 
-<span th:if="${user != null}" th:text="${user.username}">
+<div>
+<span th:if="${currentUser != null}" th:text="${currentUser.username}"></span>
+</div>
 
-    </span>
+    <br><br>
 
 <table id="users">
     <thead>
@@ -44,8 +47,11 @@
         <td th:text="${user.address}" width="100" align="middle">1</td>
         <td th:text="${user.roles}" width="100" align="middle">1</td>
 
-        <td width="60">
-            <a th:href="@{/getUsers/} + ${user?.id}">Update</a>
+        <td>
+            <form th:action="@{/getUsers/removeUser/} + ${user?.id} + '/'" th:object="${registerUser}"
+                  method="delete">
+                <input type="submit" value="Delete"/>
+            </form>
         </td>
 
 
@@ -53,6 +59,6 @@
     </tbody>
 </table>
 
-
+</div>
 </body>
 </html>

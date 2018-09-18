@@ -27,11 +27,14 @@
 
     <a th:if="${user != null}" href="/logout">Logout</a>
 
-    <td width="60">
-        <a th:if="${user != null}" th:href="@{/getUsers/} + ${userId}">My Profile</a>
-    </td>
+
+    <a th:if="${user != null}" th:href="@{/getUsers/} + ${userId}" th:object="${updateRegisterUserRequest}">My Profile</a>
+
+
 
 </div4>
+
+
     <table th:if="${errors != null}">
         <tr th:each="error : ${errors}">
             <td th:text="${error}" style="color:red"></td>
