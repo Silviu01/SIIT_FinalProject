@@ -83,7 +83,7 @@ public class VehicleController {
     @RequestMapping(method = RequestMethod.GET, value = "vehicle/removeVehicle/{id}")
     public String removeVehicle(Model model, @PathVariable(name = "id") int id){
         vehicleService.removeVehicle(id);
-        model.addAttribute("message1", "Car deleted");
+        model.addAttribute("message1", "Car deleted"); //Todo message not shown
         model.addAttribute("cars", vehicleService.getAllVehicles());
 
         return "redirect:/vehicle";

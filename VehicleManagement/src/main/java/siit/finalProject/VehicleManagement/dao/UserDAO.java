@@ -1,12 +1,14 @@
 package siit.finalProject.VehicleManagement.dao;
 
-import siit.finalProject.VehicleManagement.domain.RegisterUser;
 import siit.finalProject.VehicleManagement.domain.User;
+
+import java.util.List;
 
 public interface UserDAO {
     User getUserByCredentials(String username, String pass);
 
-    void createUser (RegisterUser registerUser);
-    void updateUser (RegisterUser registerUser, int id);
-    RegisterUser getById (int id);
+    List<User> getAllUsers();
+    void createUser (User registerUser);
+    void updateUser (User registerUser, int id);
+    User getById (int id);
 }

@@ -2,7 +2,7 @@
 
 2. implement dealer
 
-3. change vehicle status - automatic
+3. Buy button - change vehicle status - automatic
 
 4. exception for year not null
 
