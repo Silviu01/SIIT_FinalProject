@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+
     <title>Registered Users</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 
 
 <body>
-
 <div>
-    <p>Users - Overview</p>
+
+    <div>
+        <p>Users - Overview</p>
+        <br>
+    </div>
+
     <br>
+
+    <div>
+        <span th:if="${currentUser != null}" th:text="${currentUser.username}"></span>
+    </div>
+
+    <br><br>
+
+    <table id="users">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}" width="15">1</td>
+            <td th:text="${user.email}" width="100" align="middle">1</td>
+            <td th:text="${user.username}" width="100" align="middle">1</td>
+            <td th:text="${user.password}" width="100" align="middle">1</td>
+            <td th:text="${user.mobile}" width="100" align="middle">1</td>
+            <td th:text="${user.address}" width="100" align="middle">1</td>
+            <td th:text="${user.roles}" width="100" align="middle">1</td>
+
+            <td>
+                <form th:action="@{/getUsers/removeUser/} + ${user?.id} + '/'" th:object="${registerUser}"
+                      method="delete">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
 </div>
-
-<br><br>
-
-<span th:if="${user != null}" th:text="${user.username}">
-
-    </span>
-
-<table id="users">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Email</th>
-        <th>Username</th>
-        <th>Password</th>
-        <th>Mobile</th>
-        <th>Address</th>
-        <th>Role</th>
-    </tr>
-    </thead>
-    <tbody>
-
-
-    <tr th:each="user : ${users}">
-        <td th:text="${user.id}" width="15">1</td>
-        <td th:text="${user.email}" width="100" align="middle">1</td>
-        <td th:text="${user.username}" width="100" align="middle">1</td>
-        <td th:text="${user.password}" width="100" align="middle">1</td>
-        <td th:text="${user.mobile}" width="100" align="middle">1</td>
-        <td th:text="${user.address}" width="100" align="middle">1</td>
-        <td th:text="${user.roles}" width="100" align="middle">1</td>
-
-        <td width="60">
-            <a th:href="@{/getUsers/} + ${user?.id}">Update</a>
-        </td>
-
-
-    </tr>
-    </tbody>
-</table>
-
-
 </body>
 </html>

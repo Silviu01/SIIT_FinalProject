@@ -1,12 +1,13 @@
 package siit.finalProject.VehicleManagement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import siit.finalProject.VehicleManagement.domain.RegisterUser;
+import siit.finalProject.VehicleManagement.domain.User;
 import siit.finalProject.VehicleManagement.dto.RegisterUserRequest;
 import siit.finalProject.VehicleManagement.service.SecurityService;
 import siit.finalProject.VehicleManagement.service.UserServiceImpl;
@@ -30,34 +31,43 @@ public class RegisterController {
 
     @RequestMapping(value = "/getUsers", method = RequestMethod.GET)
     public String getAllUsers(Model model, HttpServletRequest request){
-        List<RegisterUser> userList = userService.getAllUsers();
+        List<User> userList = userService.getAllUsers();
         model.addAttribute("users", userList);
-        model.addAttribute("user", new RegisterUser());
+        model.addAttribute("user", new User());
         model.addAttribute("currentUser", securityService.getCurrentUser());
         model.addAttribute("registerUserRequest", new RegisterUserRequest());
         return "getUsers";
     }
 
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String createUser(RegisterUserRequest registerUserRequest){
-        RegisterUser registerUser = userService.getUser(registerUserRequest);
+        User registerUser = userService.getUser(registerUserRequest);
         userService.createUser(registerUser);
         return "redirect:/login";
     }
+//
+//    @RequestMapping (value = "/getUsers/{id}", method = RequestMethod.GET)
+//    public int getCurrentId(){
+//        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        return user.getId();
+//    }
 
     @RequestMapping (value = "/getUsers/{id}", method = RequestMethod.GET)
     public String getUserDetails (@PathVariable int id, Model model){
-        RegisterUser registerUser = userService.getById(id);
+        User registerUser = userService.getById(id);
         model.addAttribute("updateRegisterUserRequest", userService.getRegisterUserRequest(registerUser));
         model.addAttribute("userId", id);
-        return "vehicle";
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("currentId", user.getId());
+        return "updateUserDetails";
     }
 
-    @RequestMapping (value = "/getUsers/updateUserDetails/{id}", method = RequestMethod.POST)
+    @RequestMapping (value = "/getUsers/update/{id}", method = RequestMethod.POST)
     public String updateUserDetails (RegisterUserRequest registerUserRequest, @PathVariable int id){
-        RegisterUser registerUser = userService.getUser(registerUserRequest);
+        User registerUser = userService.getUser(registerUserRequest);
         userService.updateUser(registerUser, id);
-        return "redirect:/getUsers";
+        return "redirect:/vehicle";
     }
 
 }

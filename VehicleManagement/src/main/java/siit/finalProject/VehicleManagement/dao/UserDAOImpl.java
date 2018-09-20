@@ -5,7 +5,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import siit.finalProject.VehicleManagement.domain.RegisterUser;
 import siit.finalProject.VehicleManagement.domain.User;
 import siit.finalProject.VehicleManagement.domain.UserRole;
 
@@ -51,9 +50,9 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<RegisterUser> getAllUsers() {
+    public List<User> getAllUsers() {
         return jdbcTemplate.query("SELECT * FROM users", (resultSet, i) -> {
-            RegisterUser user = getRegisterUserFromDB(resultSet);
+            User user = getRegisterUserFromDB(resultSet);
             return user;
         });
     }
@@ -61,7 +60,7 @@ public class UserDAOImpl implements UserDAO {
     //toDo getAllUsers
 
     @Override
-    public void createUser(RegisterUser registerUser) {
+    public void createUser(User registerUser) {
         jdbcTemplate.update("INSERT INTO users (email, username, password, mobile, address, roles) VALUES" +
                         " (?, ?, ?, ?, ?, ?)", registerUser.getEmail(), registerUser.getUsername(), registerUser.getPassword(), registerUser.getMobile(),
                 registerUser.getAddress(), "customer");
@@ -69,24 +68,24 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(RegisterUser registerUser, int id) {
+    public void updateUser(User registerUser, int id) {
         jdbcTemplate.update("UPDATE users SET email = ?, mobile = ?, address = ?" +
                         "WHERE users.id = ?", registerUser.getEmail(), registerUser.getMobile(),
-                registerUser.getAddress());
+                registerUser.getAddress(),id);
     }
 
     @Override
-    public RegisterUser getById(int id) {
-        List<RegisterUser> registerUsers = jdbcTemplate.query("SELECT * FROM users WHERE users.id = ?",
+    public User getById(int id) {
+        List<User> registerUsers = jdbcTemplate.query("SELECT * FROM users WHERE users.id = ?",
                 (ResultSet resultSet, int i) -> {
-                    RegisterUser registerUSer = getRegisterUserFromDB(resultSet);
+                    User registerUSer = getRegisterUserFromDB(resultSet);
                     return registerUSer;
                 }, id);
         return registerUsers.get(0);
     }
 
-    private RegisterUser getRegisterUserFromDB(ResultSet resultSet) throws SQLException {
-        RegisterUser registerUser = new RegisterUser();
+    private User getRegisterUserFromDB(ResultSet resultSet) throws SQLException {
+        User registerUser = new User();
         registerUser.setId(resultSet.getInt("id"));
         registerUser.setEmail(resultSet.getString("email"));
         registerUser.setUsername(resultSet.getString("username"));
@@ -97,4 +96,6 @@ public class UserDAOImpl implements UserDAO {
 
         return registerUser;
     }
+
+
 }

@@ -3,7 +3,7 @@ package siit.finalProject.VehicleManagement.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import siit.finalProject.VehicleManagement.dao.UserDAOImpl;
-import siit.finalProject.VehicleManagement.domain.RegisterUser;
+import siit.finalProject.VehicleManagement.domain.User;
 import siit.finalProject.VehicleManagement.dto.RegisterUserRequest;
 
 import java.util.List;
@@ -13,32 +13,31 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAOImpl userDAO;
-//    private List<RegisterUser> registerUsers;
-
+    private List<User> registerUsers;
 
     @Override
-    public List<RegisterUser> getAllUsers() {
+    public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
     @Override
-    public void createUser(RegisterUser registerUser) {
+    public void createUser(User registerUser) {
         userDAO.createUser(registerUser);
     }
 
     @Override
-    public void updateUser(RegisterUser registerUser, int id) {
+    public void updateUser(User registerUser, int id) {
         userDAO.updateUser(registerUser, id);
     }
 
     @Override
-    public RegisterUser getById(int id) {
+    public User getById(int id) {
         return userDAO.getById(id);
     }
 
     @Override
-    public RegisterUser getUser(RegisterUserRequest registerUserRequest) {
-        RegisterUser registerUser = new RegisterUser();
+    public User getUser(RegisterUserRequest registerUserRequest) {
+        User registerUser = new User();
 
         registerUser.setEmail(registerUserRequest.getEmail());
         registerUser.setUsername(registerUserRequest.getUsername());
@@ -52,7 +51,7 @@ public class UserServiceImpl implements UserService {
 
 //    this is for update user
     @Override
-    public RegisterUserRequest getRegisterUserRequest(RegisterUser registerUser) {
+    public RegisterUserRequest getRegisterUserRequest(User registerUser) {
         RegisterUserRequest registerUserRequest = new RegisterUserRequest();
 
         registerUserRequest.setEmail(registerUser.getEmail());
