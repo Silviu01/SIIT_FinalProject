@@ -1,13 +1,4 @@
-CREATE TABLE vehicles
-  (
-  id BIGINT PRIMARY KEY,
-  vmodel varchar(20),
-  vname varchar(20),
-  vyear varchar(20),
-  vcolor varchar(20),
-  vcost varchar(20),
-  vstatus varchar(20)
-  );
+
 
 
 Create table vehicles

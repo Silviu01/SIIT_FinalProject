@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
 <head>
     <meta charset="UTF-8">
     <title>Vehicle Management System</title>
@@ -8,12 +9,38 @@
 <body>
 <div>
     <div1>
-        <p1>Welcome to our first web app</p1>
+        <p1>Welcome to the AMS Dealership</p1>
     </div1>
 
     <div2>
-        <a href="http://localhost:8090/login">Click here to see available vehicles</a>
+        <a href="/login">Click here to login</a>
     </div2>
+    <br><br><br>
+    <div1>
+        <table id="vehicles">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Color</th>
+                <th>Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <tr th:each="car : ${cars}">
+                <td th:text="${car.vname}" width="100" align="middle">1</td>
+                <td th:text="${car.vmodel}" width="100" align="middle">1</td>
+                <td th:text="${car.vyear}" width="100" align="middle">1</td>
+                <td th:text="${car.vcolor}" width="100" align="middle">1</td>
+                <td th:text="${car.vcost}" width="100" align="middle">1</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div1>
 </div>
 </body>
 </html>
