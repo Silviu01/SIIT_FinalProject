@@ -43,6 +43,12 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
+    public void buyVehicle(Vehicle vehicle, long id) {
+        jdbcTemplate.update("UPDATE vehicles SET vstatus = ? WHERE vehicles.id= ?",
+                "Purchased", id);
+    }
+
+    @Override
     public Vehicle getById(long id) {
         List<Vehicle> vehicles = jdbcTemplate.query("SELECT * FROM vehicles WHERE vehicles.id= ?",
                 (ResultSet resultSet, int i) -> {
