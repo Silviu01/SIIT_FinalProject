@@ -30,6 +30,7 @@ public class UserDAOImpl implements UserDAO {
                         public User mapRow(ResultSet resultSet, int i) throws SQLException {
                             User user = new User();
                             user.setUsername(resultSet.getString("username"));
+                            user.setId(resultSet.getInt("id"));
                             String rolesAsString = resultSet.getString("roles");
 
                             if (rolesAsString != null) {
@@ -81,6 +82,7 @@ public class UserDAOImpl implements UserDAO {
                     User registerUSer = getRegisterUserFromDB(resultSet);
                     return registerUSer;
                 }, id);
+
         return registerUsers.get(0);
     }
 

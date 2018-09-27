@@ -13,6 +13,7 @@
              th:src="@{/images/logo.png}" th:alt-title="#{back}"/>
     </a>
     <br><br><br><br><br><br><br><br>
+
     <form action="#" th:action="@{/vehicle/details/} + ${vehicleId} + '/'" th:object="${updateVehicleRequest}"
           method="post">
         <div2>

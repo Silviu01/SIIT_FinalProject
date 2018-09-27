@@ -13,7 +13,7 @@ public class AppConfig {
     private static final int PORT = 5432;
     private static final String DB = "VehicleSystem";       //"VehicleSystem";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "Allhandsondeck1!";     //"hetfield";
+    private static final String PASSWORD = "postgres";     //"hetfield";
 
     @Bean
     public JdbcTemplate jdbcTemplate() {

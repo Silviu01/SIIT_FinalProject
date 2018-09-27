@@ -1,7 +1,6 @@
 package siit.finalProject.VehicleManagement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,8 +57,8 @@ public class RegisterController {
         User registerUser = userService.getById(id);
         model.addAttribute("updateRegisterUserRequest", userService.getRegisterUserRequest(registerUser));
         model.addAttribute("userId", id);
-        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("currentId", user.getId());
+//        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("currentId", user.getId());
         return "updateUserDetails";
     }
 

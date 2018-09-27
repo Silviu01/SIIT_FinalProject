@@ -36,7 +36,7 @@ public class VehicleController {
         model.addAttribute("cars", vehicleList);
         model.addAttribute("car", new Vehicle());
         model.addAttribute("user", securityService.getCurrentUser());
-        model.addAttribute("createVehicleRequest", new CreateVehicleRequest());
+        model.addAttribute("createClientRequest", new CreateVehicleRequest());
         return "vehicle";
     }
 
