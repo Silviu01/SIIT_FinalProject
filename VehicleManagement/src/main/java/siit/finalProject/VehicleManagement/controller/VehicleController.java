@@ -61,6 +61,14 @@ public class VehicleController {
         return "updateVehicle";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/vehicle/details/{id}")
+    public String getVehicleDetails(@PathVariable long id, Model model) {
+        Vehicle vehicle = vehicleService.getById(id);
+        model.addAttribute("updateVehicleRequest", vehicleService.getVehicleRequest(vehicle));
+        model.addAttribute("vehicleId", id);
+        return "vehicleDetails";
+    }
+
     /**
      * @param vehicleRequest
      * @param id
@@ -71,6 +79,13 @@ public class VehicleController {
     public String updateVehicle(CreateVehicleRequest vehicleRequest, @PathVariable long id) {
         Vehicle vehicle = vehicleService.getVehicle(vehicleRequest);
         vehicleService.updateVehicle(vehicle, id);
+        return "redirect:/vehicle";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/vehicle/details/{id}")
+    public String buyVehicle(CreateVehicleRequest vehicleRequest, @PathVariable long id) {
+        Vehicle vehicle = vehicleService.getVehicle(vehicleRequest);
+        vehicleService.buyVehicle(vehicle, id);
         return "redirect:/vehicle";
     }
 
@@ -87,6 +102,5 @@ public class VehicleController {
         model.addAttribute("cars", vehicleService.getAllVehicles());
 
         return "redirect:/vehicle";
-        //TODO restrict acces for customer on DELETE button and createVehicle/addNewCar
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import siit.finalProject.VehicleManagement.domain.User;
 import siit.finalProject.VehicleManagement.domain.UserRole;
+import siit.finalProject.VehicleManagement.exceptionsHandler.InvalidRegisterDetails;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +31,7 @@ public class UserDAOImpl implements UserDAO {
                         public User mapRow(ResultSet resultSet, int i) throws SQLException {
                             User user = new User();
                             user.setUsername(resultSet.getString("username"));
+                            user.setId(resultSet.getInt("id"));
                             String rolesAsString = resultSet.getString("roles");
 
                             if (rolesAsString != null) {
@@ -57,21 +59,23 @@ public class UserDAOImpl implements UserDAO {
         });
     }
 
-    //toDo getAllUsers
-
     @Override
     public void createUser(User registerUser) {
         jdbcTemplate.update("INSERT INTO users (email, username, password, mobile, address, roles) VALUES" +
                         " (?, ?, ?, ?, ?, ?)", registerUser.getEmail(), registerUser.getUsername(), registerUser.getPassword(), registerUser.getMobile(),
                 registerUser.getAddress(), "customer");
-
     }
 
     @Override
     public void updateUser(User registerUser, int id) {
         jdbcTemplate.update("UPDATE users SET email = ?, mobile = ?, address = ?" +
                         "WHERE users.id = ?", registerUser.getEmail(), registerUser.getMobile(),
-                registerUser.getAddress(),id);
+                registerUser.getAddress(), id);
+    }
+
+    @Override
+    public void removeUser(int id) {
+        jdbcTemplate.update("DELETE FROM users WHERE id=?", id);
     }
 
     @Override
@@ -81,6 +85,7 @@ public class UserDAOImpl implements UserDAO {
                     User registerUSer = getRegisterUserFromDB(resultSet);
                     return registerUSer;
                 }, id);
+
         return registerUsers.get(0);
     }
 
@@ -96,6 +101,4 @@ public class UserDAOImpl implements UserDAO {
 
         return registerUser;
     }
-
-
 }

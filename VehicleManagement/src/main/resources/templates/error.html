@@ -1,15 +1,30 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+
 <head>
-    <title>Success</title>
+    <title>Vehicle Dealership - Overview</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{../../style.css}">
 </head>
+
 <body>
+<div class="content">
 
-<font color="green"><h1>Error</h1></font>
-<h2>Error page TO DO</h2>
+    <a href="/vehicle">
+        <img align="left" src="../../images/logo.png" width="170" height="88"
+             th:src="@{/images/logo.png}" th:alt-title="#{back}"/>
+    </a>
 
-<font color="red"><h1>Please don't forget to edit this page or else!</h1></font>
+    <img align="middle" src="../../images/cars.png"
+         th:src="@{/images/cars.png}" th:alt-title="#{logo}"/>
 
+    <div1>
+        <p1>Oops! Something went wrong! Please try again</p1>
+        <br>
+    </div1>
+
+
+</div>
 </body>
 </html>

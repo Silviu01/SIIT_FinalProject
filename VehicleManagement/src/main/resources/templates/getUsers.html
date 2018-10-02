@@ -1,25 +1,34 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
 
-    <title>Registered Users</title>
+<head>
+    <title>Vehicle Dealership - Overview</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{../../style.css}">
 </head>
 
-
 <body>
-<div>
+<div class="content">
 
-    <div>
-        <p>Users - Overview</p>
+    <a href="/vehicle">
+        <img align="left" src="../../images/logo.png" width="170" height="88"
+             th:src="@{/images/logo.png}" th:alt-title="#{back}"/>
+    </a>
+
+    <img align="middle" src="../../images/cars.png"
+         th:src="@{/images/cars.png}" th:alt-title="#{logo}"/>
+
+    <div1>
+        <p1>Vehicle Dealership - Overview</p1>
         <br>
-    </div>
+    </div1>
 
     <br>
 
-    <div>
+    <div4>
         <span th:if="${currentUser != null}" th:text="${currentUser.username}"></span>
-    </div>
+    </div4>
 
     <br><br>
 
@@ -44,7 +53,7 @@
             <td th:text="${user.username}" width="100" align="middle">1</td>
             <td th:text="${user.password}" width="100" align="middle">1</td>
             <td th:text="${user.mobile}" width="100" align="middle">1</td>
-            <td th:text="${user.address}" width="100" align="middle">1</td>
+            <td th:text="${user.address}" width="200" align="middle">1</td>
             <td th:text="${user.roles}" width="100" align="middle">1</td>
 
             <td>

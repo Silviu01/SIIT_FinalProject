@@ -14,5 +14,7 @@ public interface VehicleDao {
 
     void updateVehicle (Vehicle vehicle, long id);
 
+    void buyVehicle (Vehicle vehicle, long id);
+
     Vehicle getById (long id);
 }

@@ -10,26 +10,33 @@
 
 <body>
 <div class="content">
+
+    <a href="/vehicle">
+        <img align="left" src="../../images/logo.png" width="170" height="88"
+             th:src="@{/images/logo.png}" th:alt-title="#{back}"/>
+    </a>
+
     <img align="middle" src="../../images/cars.png"
          th:src="@{/images/cars.png}" th:alt-title="#{logo}"/>
-
 
     <div1>
         <p1>Vehicle Dealership - Overview</p1>
         <br>
     </div1>
 
-<div4>
+    <div4>
     <span th:if="${user != null}" th:text="${user.username}">
 </span>
-    <br>
-    <a th:if="${user != null}" href="/logout">Logout</a>
+        <br>
+        <a th:if="${user != null}" href="/logout">Logout</a>
 
-    <td width="60">
-        <a th:if="${user != null}" th:href="@{/getUsers/} + ${currentId}" >My Profile</a>
-    </td>
+        <td width="60">
+            <a th:if="${user != null}" th:href="@{/getUsers/} + ${user.id}">My Profile</a>
+        </td>
 
-</div4>
+        <a th:if="${#sets.contains(user.rolesAsString, 'admin')}" href="/getUsers">Users</a>
+
+    </div4>
     <table th:if="${errors != null}">
         <tr th:each="error : ${errors}">
             <td th:text="${error}" style="color:red"></td>
@@ -90,12 +97,17 @@
 
         <tr th:each="car : ${cars}">
             <td th:text="${car.id}" width="15">1</td>
-            <td th:text="${car.vname}" width="100" align="middle">1</td>
-            <td th:text="${car.vmodel}" width="100" align="middle">1</td>
+            <td th:text="${car.vname}" width="150" align="middle">1</td>
+            <td th:text="${car.vmodel}" width="150" align="middle">1</td>
             <td th:text="${car.vyear}" width="100" align="middle">1</td>
             <td th:text="${car.vcolor}" width="100" align="middle">1</td>
             <td th:text="${car.vcost}" width="100" align="middle">1</td>
             <td th:text="${car.vstatus}" width="100" align="middle">1</td>
+
+            <td width="60">
+                <a th:href="@{/vehicle/details/} + ${car?.id}">View</a>
+            </td>
+
 
             <td width="60">
                 <a th:href="@{/vehicle/} + ${car?.id}" th:if="${#sets.contains(user.rolesAsString, 'admin')

@@ -42,6 +42,14 @@ public class VehicleServiceImpl implements VehicleService {
         vehicleDao.updateVehicle(vehicle, id);
     }
 
+    @Override
+    public void buyVehicle(Vehicle vehicle, long id) {
+        vehicles = vehicles.stream().filter(vehicle1 -> vehicle1.getId() != id).collect(Collectors.toList());
+        vehicle.setId(id);
+        vehicles.add(vehicle);
+        vehicleDao.buyVehicle(vehicle, id);
+    }
+
     /**
      * @param id
      * @return

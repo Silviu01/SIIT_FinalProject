@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
 <head>
-    <title>Update Vehicle</title>
+    <title>Vehicle Details</title>
     <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="style.css" th:href="@{../../style.css}">
 </head>
@@ -13,35 +13,35 @@
              th:src="@{/images/logo.png}" th:alt-title="#{back}"/>
     </a>
     <br><br><br><br><br><br><br><br>
-    <div1><p1>Update vehicle details</p1></div1>
 
-    <form action="#" th:action="@{/vehicle/update/} + ${vehicleId} + '/'" th:object="${updateVehicleRequest}"
+    <form action="#" th:action="@{/vehicle/details/} + ${vehicleId} + '/'" th:object="${updateVehicleRequest}"
           method="post">
         <div2>
             <label th:for="${vname}">Name: </label>
-            <input type="text" id="vname" name="vname" th:value="*{vname}"/>
+            <input type="text" id="vname" name="vname" disabled th:value="*{vname}"/>
             <br>
             <br>
             <label th:for="${vmodel}">Model: </label>
-            <input type="text" id="vmodel" name="vmodel" th:value="*{vmodel}"/>
+            <input type="text" id="vmodel" name="vmodel" disabled th:value="*{vmodel}"/>
             <br>
             <br>
             <label th:for="${vyear}">Year: </label>
-            <input type="text" id="vyear" name="vyear" th:value="*{vyear}"/>
+            <input type="text" id="vyear" name="vyear" disabled th:value="*{vyear}"/>
             <br>
             <br>
             <label th:for="${vcolor}">Color: </label>
-            <input type="text" id="vcolor" name="vcolor" th:value="*{vcolor}"/>
+            <input type="text" id="vcolor" name="vcolor" disabled th:value="*{vcolor}"/>
             <br>
             <br>
             <label th:for="${vcost}">Price: </label>
-            <input type="text" id="vcost" name="vcost" th:value="*{vcost}"/>
+            <input type="text" id="vcost" name="vcost" disabled th:value="*{vcost}"/>
         </div2>
         <br>
         <div5>
-            <input type="submit" id="doUpdate" name="save vehicle" value="Update car"/>
+            <input type="submit" id="doUpdate" name="save vehicle" value="Buy"/>
         </div5>
     </form>
+
 
 </div>
 </body>

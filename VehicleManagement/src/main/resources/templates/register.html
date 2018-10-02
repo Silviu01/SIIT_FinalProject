@@ -11,10 +11,19 @@
 
 <body>
 <div>
+    <a href="/vehicle">
+        <img align="left" src="../../images/logo.png" width="170" height="88"
+             th:src="@{/images/logo.png}" th:alt-title="#{back}"/>
+    </a>
+
     <div1>
         <p1>Register to get exclusive discounts!</p1>
         <br>
     </div1>
+
+    <div4 th:if="${error2 != null}">
+        <p th:text="${error2}" style="color:red"></p>
+    </div4>
 
     <p>Insert required details below</p>
 

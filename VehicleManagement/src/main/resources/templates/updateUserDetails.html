@@ -1,36 +1,41 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org ">
+      xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
 <head>
-    <title>Update My Profile</title>
+    <title>Update Vehicle</title>
     <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{../../style.css}">
 </head>
 <body>
+<div>
+    <a href="/vehicle">
+        <img align="left" src="../../images/logo.png" width="170" height="88"
+             th:src="@{/images/logo.png}" th:alt-title="#{back}"/>
+    </a>
+    <br><br><br><br><br><br><br><br>
 
-<h2>Update profile</h2>
+<div1><p1>Update profile</p1></div1>
 
 <form action="#" th:action="@{/getUsers/update/} + ${userId} + '/'" th:object="${updateRegisterUserRequest}"
       method="post">
-    <div>
+    <div2>
         <label th:for="${email}">Email: </label>
         <input type="text" id="email" name="email" th:value="*{email}"/>
-    </div>
-
-    <div>
+        <br>
+        <br>
         <label th:for="${mobile}">Mobile No.: </label>
         <input type="text" id="mobile" name="mobile" th:value="*{mobile}"/>
-    </div>
-
-    <div>
+        <br>
+        <br>
         <label th:for="${address}">Address: </label>
         <input type="text" id="address" name="address" th:value="*{address}"/>
-    </div>
+    </div2>
     <br>
-    <div>
+    <div5>
         <input type="submit" id="doUpdate" name="save user" value="Update details"/>
-    </div>
+    </div5>
 </form>
 
+</div>
 </body>
 </html>
