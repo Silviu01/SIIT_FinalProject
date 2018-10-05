@@ -5,6 +5,23 @@ import siit.finalProject.VehicleManagement.service.EncodePassword;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * Admin can get log in with valid username and password.
+ * Admin can view and modify all registered user details.
+ * Admin can upload vehicle information like Vehicle name, Manufacture Year, Model Color, Cost.
+ *
+ *
+ * Customer needs to register with the application to get unique username and password.
+ * The customer can log in with valid username and password.
+ * Customer views Vehicles and sends a request to sales manager for cost and delivery date.
+ * The customer can view sales manager response
+ *
+ * The dealer needs to register with the application to get unique username and password.
+ * The dealer can enter into the application with valid username and password.
+ * The dealer can upload vehicle information such as vehicle name, manufacture year, model color and cost.
+ *
+ */
+
 public class User {
 
     private String username;
